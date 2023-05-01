@@ -1,0 +1,91 @@
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #FFFFFF;
+  }
+  a {
+    color: #00B7FF;
+  }
+  p{
+    margin-top: 0px;
+    margin-bottom: 6px;
+  }
+  body, html {
+    height: 100%;
+  }
+  .button-container {
+    display:inline-block;
+    position:relative;
+  }
+
+  .bg {
+    z-index: -2;
+    /* The image used */
+    background-image: url("/images/battlebackground.png");
+  
+    /* Full height */
+    height: 100%;
+  
+    /* Center and scale the image nicely */
+  }
+  #back{
+    z-index: -3 !important;
+  }
+  #pb{
+    width: 45px; 
+    top: 500px; 
+    left: 250px
+  }
+  .button-container {
+    position: absolute;
+    top: 85%;
+    left: 20%;
+    background-color: white;
+    border-radius: 25px;
+    color:black;
+    text-transform:uppercase;
+    padding: 1em 1.5em;
+  }
+  #move {
+    background-color: lightgray;
+    color: black;
+    height: 100px;
+    width: 200px;
+    border-radius: 25px;
+  }
+#swit{
+  width:13.3333333333%;
+  height: 10%;
+}
+#hpbg1{
+  position: absolute;
+  width:300px;
+  height:30px;
+  background:gray;
+  top: 150px;
+  left:400px;
+}
+#hp1{
+  position: absolute;
+  width:296px;
+  height:26px;
+  background:green;
+  top: 152px;
+  left:402px;
+}
+#hpbg2{
+  position: absolute;
+  width:300px;
+  height:30px;
+  background:gray;
+  top: 485px;
+  left:745px;
+}
+#hp2{
+  position: absolute;
+  width:296px;
+  height:26px;
+  background:green;
+  top: 487px;
+  left: 747px;
+}

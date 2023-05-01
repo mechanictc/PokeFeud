@@ -1,0 +1,77 @@
+{
+    "normal": {
+      "effective": [],
+      "resist": ["rock"],
+      "immune": ["ghost"]
+    },
+    "fire": {
+      "effective": ["grass", "ice", "bug"],
+      "resist": ["fire", "water", "rock"],
+      "immune": []
+    },
+    "water": {
+      "effective": ["fire", "ground", "rock"],
+      "resist": ["water", "grass"],
+      "immune": []
+    },
+    "grass": {
+      "effective": ["water", "ground", "rock"],
+      "resist": ["fire", "grass", "poison", "flying", "bug", "dragon"],
+      "immune": []
+    },
+    "electric": {
+      "effective": ["water", "flying"],
+      "resist": ["grass", "electric"],
+      "immune": []
+    },
+    "ice": {
+      "effective": ["grass", "ground", "flying", "dragon"],
+      "resist": ["fire", "water", "ice"],
+      "immune": []
+    },
+    "fighting": {
+      "effective": ["normal", "ice", "rock"],
+      "resist": ["poison", "flying", "psychic", "bug", "ghost"],
+      "immune": []
+    },
+    "poison": {
+      "effective": ["grass"],
+      "resist": ["poison", "ground", "rock", "ghost"],
+      "immune": []
+    },
+    "ground": {
+      "effective": ["fire", "electric", "poison", "rock"],
+      "resist": ["grass", "flying", "bug"],
+      "immune": []
+    },
+    "flying": {
+      "effective": ["grass", "fighting", "bug"],
+      "resist": ["electric", "rock"],
+      "immune": ["ground"]
+    },
+    "psychic": {
+      "effective": ["fighting", "poison"],
+      "resist": ["psychic"],
+      "immune": []
+    },
+    "bug": {
+      "effective": ["grass", "psychic"],
+      "resist": ["fire", "fighting", "poison", "flying"],
+      "immune": []
+    },
+    "rock": {
+      "effective": ["fire", "ice", "flying", "bug"],
+      "resist": ["fighting", "ground"],
+      "immune": []
+    },
+    "ghost": {
+      "effective": ["psychic", "ghost"],
+      "resist": [],
+      "immune": ["normal", "fighting"]
+    },
+    "dragon": {
+      "effective": ["dragon"],
+      "resist": [],
+      "immune": []
+    }
+  }
