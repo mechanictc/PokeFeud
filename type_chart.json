@@ -71,7 +71,7 @@
     },
     "dragon": {
       "effective": ["dragon"],
-      "resist": [],
+      "resist": ["electric", "fire", "water", "grass"],
       "immune": []
     }
   }

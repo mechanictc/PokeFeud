@@ -11,7 +11,7 @@
       "hp": 78,
       "attack": 84,
       "defense": 78,
-      "special_attack": 109,
+      "special_attack": 85,
       "special_defense": 85,
       "speed": 100
     },
@@ -20,7 +20,7 @@
       "attack": 83,
       "defense": 100,
       "special_attack": 85,
-      "special_defense": 105,
+      "special_defense": 85,
       "speed": 78
     },
     "butterfree": {
@@ -169,7 +169,7 @@
     },
     "poliwrath": {
         "hp": 90,
-        "attack": 95,
+        "attack": 85,
         "defense": 95,
         "special_attack": 70,
         "special_defense": 90,
@@ -600,7 +600,7 @@
         "special": 154,
         "speed": 130,
         "special_attack": 154,
-        "special_defense": 90
+        "special_defense": 154
     },
     "mew": {
         "hp": 100,

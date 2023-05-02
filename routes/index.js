@@ -7,8 +7,8 @@ const pokemon = require('../pokemon.json')
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'PokeFront' })
-  console.log(playModel.calcDamage("charizard", "mewtwo", "Solar Beam"));
+  playModel.calcDamage("charizard", "blastoise", "Flamethrower");
+  res.render('index', { title: 'PokeFever' });
 });
 
 // router.get('/play', function(req, res) {
