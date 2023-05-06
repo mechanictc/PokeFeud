@@ -32,6 +32,6 @@ router.get('/play', function(req, res) {
   });
   // selected_file = selected_file.substring(0, selected_file.indexOf("."));
   // console.log(selected_file)
-  aiModel.teamCreate()
+  console.log(aiModel.teamCreate())
 });
 module.exports = router;
