@@ -8,8 +8,9 @@
         var stip2 = playerTeam.split(",")
         let playerPokemon = stip[0];
         let opponentPokemon = stip2[0];
-        let playerTeamHp = playModel.generateHp(stip);
-        let opponentTeamHp = playModel.generateHp(opponentTeam);
+        console.log(team2)
+        let playerTeamHp = [<%=playModel.generateHp(team1)%>];
+        let opponentTeamHp = [<%=playModel.generateHp(team2)%>];
         function forceChange(){
             var actionText = document.getElementById('action-text');
             var moveContainer = document.getElementById('button-container');
@@ -22,32 +23,32 @@
         }
         function opponentTurn(moveNumber){
             console.log(opponentTeamHp[0], playerTeamHp[activeIndex]);
-            let turnOrder = playModel.turnOrdering(playerPokemon, team2[0]);
-            let playerMoves = playModel.getMoves(playerPokemon);
+            let turnOrder = <%=playModel.turnOrdering(playerPokemon, team2[0])%>;
+            let playerMoves = <%=playModel.getMoves(playerPokemon)%>;
             if(turnOrder[0] == 1){
-                if(playModel.doDamage(opponentTeamHp[0], playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
+                if(<%=playModel.doDamage(opponentTeamHp[0], playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]))%> <= 0){
                     opponentTeamHp.shift();
                     aiModel.teamSwitch(opponentTeam);
                 }else{
-                    opponentTeamHp[0] -= playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
-                    if(playModel.doDamage(playerTeamHp[activeIndex], playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])) <= 0){
+                    opponentTeamHp[0] -= <%=playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])%>;
+                    if(<%=playModel.doDamage(playerTeamHp[activeIndex], playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon]))%> <= 0){
                         playerTeam.splice(activeIndex, 1);
                         forceChange();
                     }else{
-                        playerTeamHp[activeIndex] -= playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon]);
+                        playerTeamHp[activeIndex] -= <%=playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])%>;
                     }
                 }
             }else{
-                if(playModel.doDamage(playerTeamHp[activeIndex], playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])) <= 0){
+                if(<%=playModel.doDamage(playerTeamHp[activeIndex], playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon]))%> <= 0){
                         playerTeam.splice(activeIndex, 1);
                         forceChange();
                 }else{
-                    playerTeamHp[activeIndex] -= playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon]);
-                    if(playModel.doDamage(opponentTeamHp[0], playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
+                    playerTeamHp[activeIndex] -= <%=playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon])%>;
+                    if(<%=playModel.doDamage(opponentTeamHp[0], playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]))%> <= 0){
                         opponentTeamHp.shift();
                         aiModel.teamSwitch(opponentTeam);
                     }else{
-                        opponentTeamHp[0] -= playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
+                        opponentTeamHp[0] -= <%=playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])%>;
                 }
             }
         }
@@ -79,10 +80,10 @@
         </center>
         <center>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="opponentTurn(0)"><%= calcDamage %></button>
-            <button class="move" id="move2" onclick="opponentTurn(1)">change button3</button>
-            <button class="move" id="move3" onclick="opponentTurn(2)">testing</button>
-            <button class="move" id="move4" onclick="opponentTurn(3)">boing</button>
+            <button class="move" id="move1" onclick="opponentTurn(0)"><%= playModel.getMoves(team1[0], 0) %></button>
+            <button class="move" id="move2" onclick="opponentTurn(1)"><%= playModel.getMoves(team1[0], 1) %></button>
+            <button class="move" id="move3" onclick="opponentTurn(2)"><%= playModel.getMoves(team1[0], 2) %></button>
+            <button class="move" id="move4" onclick="opponentTurn(3)"><%= playModel.getMoves(team1[0], 3) %></button>
         </div>
             <button type = "button" class="switch" id = "swit1" onclick="switched(1, '<%=team1%>')"><%=team1[1]%></button>
             <button type = "button" class="switch" id = "swit2" onclick="switched(2, '<%=team1%>')"><%=team1[2]%></button>

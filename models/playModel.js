@@ -101,15 +101,43 @@ function doDamage(currentPokemonHp, incomingDamage){
 	return currentPokemonHp-incomingDamage;
 }
 /**
- * Returns turn order
- * @param playerPokemon, opponentPokemon-self-explanatory
- * @return-1 is player, 2 is opponent
+ * Force Player to change Pokemon. Disables moves and changes action text during
  */
-function turnOrdering(playerPokemon, opponentPokemon){
+function forceChange(){
+	var actionText = document.getElementById('action-text');
+	var moveContainer = document.getElementById('button-container');
+	moveContainer.toggle();
+	actionText.innerHTML = "Change Pokemon";
+	document.getElementById("switch-pokemon").onclick = function battleUI() {
+		moveContainer.toggle();
+		actionText.innerHTML = "What will you do?";
+	}
+}
+/**
+ * Does all the turn work, speed checks, damage calcs. Run in game.ejs
+ */
+function turnOrdering(playerPokemon, opponentTeam, opponentPokemon ,moveNumber){
+	let playerMoves = moves[playerPokemon].moveset;
 	if(isFaster(playerPokemon, opponentPokemon)){
-		return [1,2]
+		let damage = playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
+		if(playModel.doDamage(opponentPokemon.hp, damage) <= 0){
+				aiModel.teamSwitch(opponentTeam);
+		}else{
+			let damage = playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove(opponentPokemon, playerPokemon));
+			if(doDamage(playerPokemon.hp, damage) <= 0){
+				playModel.forceChange();
+			}
+		}
 	}else{
-		return [2,1]
+		let damage = playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove(opponentPokemon, playerPokemon));
+		if(playModel.doDamage(playerPokemon.hp, damage) <= 0){
+			playModel.forceChange();
+		}else{
+			let damage = playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
+			if(playModel.doDamage(opponentPokemon.hp, damage) <= 0){
+				aiModel.teamSwitch(opponentTeam);
+			}
+		}
 	}
 }
 /**
@@ -119,9 +147,17 @@ function turnOrdering(playerPokemon, opponentPokemon){
  */
 function generateHp(team){
 	let HpArray = [];
-	for(teamPokemon in team){
-		HpArray.add(pokemon[teamPokemon].hp);
+	for(let i = 0; i < team.length; i++){
+		console.log(pokemon[team[i]].hp);
+		HpArray.push(pokemon[team[i]].hp);
 	}
 	return HpArray;
 }
-module.exports = {calcDamage, isEffective, doDamage, isFaster, turnOrdering, generateHp};
+
+function getMoves(pokemon, number) {
+	const pokemon_c = pokemon.charAt(0).toUpperCase() + pokemon.slice(1);
+	const move = moves[pokemon_c];
+	return Object.keys(move.moveset)[number];
+}
+
+module.exports = {calcDamage, isEffective, doDamage, isFaster, turnOrdering, generateHp, getMoves};
