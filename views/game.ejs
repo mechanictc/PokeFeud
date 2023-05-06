@@ -14,17 +14,14 @@
             playModel.turnOrdering(playerPokemon, team2, team2[0], moveNumber);
         }
         function switched(x,team){
-            console.log('<%=bg%>')
             var currteam = stip
             var y = currteam[x];
-            console.log(y)
             var newX = String(x);
             var currelem = document.getElementById("bsprite");
             var t = x
             var v = document.getElementById("swit"+t)
             var c = v.innerHTML
             currelem.src = "/images/back/" + v.innerHTML + ".png";
-            console.log(playerPokemon)
             c = v.innerHTML
             v.innerHTML = playerPokemon
             playerPokemon = c
