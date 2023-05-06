@@ -8,6 +8,7 @@
         var stip2 = playerTeam.split(",")
         let playerPokemon = stip[0];
         let opponentPokemon = stip2[0];
+        let activeIndex = 0;
         console.log(team2)
         let playerTeamHp = [<%=playModel.generateHp(team1)%>];
         let opponentTeamHp = [<%=playModel.generateHp(team2)%>];
@@ -23,6 +24,7 @@
             c = v.innerHTML
             v.innerHTML = playerPokemon
             playerPokemon = c
+            activeIndex = x;
         }
     </script>
     </head>

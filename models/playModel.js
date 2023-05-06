@@ -116,28 +116,11 @@ function forceChange(){
 /**
  * Does all the turn work, speed checks, damage calcs. Run in game.ejs
  */
-function turnOrdering(playerPokemon, opponentTeam, opponentPokemon ,moveNumber){
-	let playerMoves = moves[playerPokemon].moveset;
+function turnOrdering(playerPokemon, opponentPokemon){
 	if(isFaster(playerPokemon, opponentPokemon)){
-		let damage = playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
-		if(playModel.doDamage(opponentPokemon.hp, damage) <= 0){
-				aiModel.teamSwitch(opponentTeam);
-		}else{
-			let damage = playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove(opponentPokemon, playerPokemon));
-			if(doDamage(playerPokemon.hp, damage) <= 0){
-				playModel.forceChange();
-			}
-		}
+		return [1,2]
 	}else{
-		let damage = playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove(opponentPokemon, playerPokemon));
-		if(playModel.doDamage(playerPokemon.hp, damage) <= 0){
-			playModel.forceChange();
-		}else{
-			let damage = playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
-			if(playModel.doDamage(opponentPokemon.hp, damage) <= 0){
-				aiModel.teamSwitch(opponentTeam);
-			}
-		}
+		return [2,1]
 	}
 }
 /**
@@ -153,8 +136,6 @@ function generateHp(team){
 	}
 	return HpArray;
 }
-let playerTeamHp = generateHp(team1);
-let opponentTeamHp = playModel.generateHp(team2);
 function forceChange(){
     var actionText = document.getElementById('action-text');
     var moveContainer = document.getElementById('button-container');
@@ -165,34 +146,36 @@ function forceChange(){
         actionText.innerHTML = "What will you do?";
     }
 }
-function opponentTurn(moveNumber){
+function opponentTurn(playerTeam, playerTeamHp, opponentTeam, opponentTeamHp, activeIndex, moveNumber){
+	let playerPokemon = playerTeam[activeIndex]
+	let opponentPokemon = opponentTeam[0]
     console.log(opponentTeamHp[0], playerTeamHp[activeIndex]);
     let turnOrder = turnOrdering(playerPokemon, team2[0]);
-    let playerMoves = playModel.getMoves(playerPokemon);
+    let playerMoves = getMoves(playerPokemon);
     if(turnOrder[0] == 1){
         if(doDamage(opponentTeamHp[0], calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
             opponentTeamHp.shift();
             aiModel.teamSwitch(opponentTeam);
         }else{
             opponentTeamHp[0] -= calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
-            if(doDamage(playerTeamHp[activeIndex], playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])) <= 0){
+            if(doDamage(playerTeamHp[activeIndex], calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])) <= 0){
                 playerTeam.splice(activeIndex, 1);
                 forceChange();
             }else{
-                playerTeamHp[activeIndex] -= calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])%>;
+                playerTeamHp[activeIndex] -= calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon]);
             }
         }
     }else{
-        if(<%=playModel.doDamage(playerTeamHp[activeIndex], playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon]))%> <= 0){
+        if(doDamage(playerTeamHp[activeIndex], calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])) <= 0){
             playerTeam.splice(activeIndex, 1);
             forceChange();
         }else{
-            playerTeamHp[activeIndex] -= <%=playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon])%>;
-            if(<%=playModel.doDamage(opponentTeamHp[0], playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]))%> <= 0){
+            playerTeamHp[activeIndex] -= calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon]);
+            if(doDamage(opponentTeamHp[0], calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
                 opponentTeamHp.shift();
                 aiModel.teamSwitch(opponentTeam);
             }else{
-                opponentTeamHp[0] -= <%=playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])%>;
+                opponentTeamHp[0] -= calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
             }
         }
     }
@@ -203,4 +186,4 @@ function getMoves(pokemon, number) {
 	return Object.keys(move.moveset)[number];
 }
 
-module.exports = {calcDamage, isEffective, doDamage, isFaster, turnOrdering, generateHp, getMoves};
+module.exports = {calcDamage, isEffective, doDamage, isFaster, turnOrdering, generateHp, getMoves, opponentTurn, forceChange};
