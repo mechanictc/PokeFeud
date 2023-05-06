@@ -10,6 +10,7 @@ const moves = require('../moves');
 const type_chart = require('../type_chart')
 const debug = require('./debugModel');
 const randomFile = require('select-random-file');
+const aiModel = require('../models/aiModel.js');
 /**
  * Calculates the damage dealt from pokemon1 to pokemon2 including modifiers
  * 
@@ -115,28 +116,40 @@ function forceChange(){
 /**
  * Does all the turn work, speed checks, damage calcs. Run in game.ejs
  */
-function turnOrdering(moveNumber){
-	let playerMove = playerPokemonMoves[moveNumber];
-	if(isFaster("pokemon1", team2[0])){
-		let damage = playModel.calcDamage("pokemon1", "pokemon2", playerMove);
-		if(playModel.doDamage(team2[0].hp, damage) <= 0){
+function turnOrdering(playerPokemon, opponentTeam, opponentPokemon ,moveNumber){
+	let playerMoves = moves[playerPokemon].moveset;
+	if(isFaster(playerPokemon, opponentPokemon)){
+		let damage = playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
+		if(playModel.doDamage(opponentPokemon.hp, damage) <= 0){
 				aiModel.teamSwitch(opponentTeam);
 		}else{
-			let damage = playModel.calcDamage(team2[0], "pokemon1", "opponentMove");
-			if(doDamage('pokemon1'.hp, damage) <= 0){
+			let damage = playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove(opponentPokemon, playerPokemon));
+			if(doDamage(playerPokemon.hp, damage) <= 0){
 				playModel.forceChange();
 			}
 		}
 	}else{
-		let damage = playModel.calcDamage(team2[0], "pokemon1", "opponentMove");
-		if(playModel.doDamage('pokemon1'.hp, damage) <= 0){
+		let damage = playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove(opponentPokemon, playerPokemon));
+		if(playModel.doDamage(playerPokemon.hp, damage) <= 0){
 			playModel.forceChange();
 		}else{
-			let damage = playModel.calcDamage("pokemon1", team2[0], playerMove);
-			if(playModel.doDamage(team2[0].hp, damage) <= 0){
+			let damage = playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
+			if(playModel.doDamage(opponentPokemon.hp, damage) <= 0){
 				aiModel.teamSwitch(opponentTeam);
 			}
 		}
 	}
 }
-module.exports = {calcDamage, isEffective, doDamage, isFaster, forceChange, turnOrdering};
+/**
+ * Generate array of Pokemon Hps
+ * @param team-array of pokemon
+ * @return-array of hps
+ */
+function generateHp(team){
+	let HpArray = [];
+	for(teamPokemon in team){
+		HpArray.add(pokemon[teamPokemon].hp);
+	}
+	return HpArray;
+}
+module.exports = {calcDamage, isEffective, doDamage, isFaster, forceChange, turnOrdering, generateHp};
