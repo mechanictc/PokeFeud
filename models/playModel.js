@@ -124,4 +124,4 @@ function generateHp(team){
 	}
 	return HpArray;
 }
-module.exports = {calcDamage, isEffective, doDamage, isFaster, forceChange, turnOrdering, generateHp};
+module.exports = {calcDamage, isEffective, doDamage, isFaster, turnOrdering, generateHp};

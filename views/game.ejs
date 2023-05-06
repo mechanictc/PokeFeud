@@ -21,32 +21,33 @@
 	        }
         }
         function opponentTurn(moveNumber){
+            console.log(opponentTeamHp[0], playerTeamHp[activeIndex]);
             let turnOrder = playModel.turnOrdering(playerPokemon, team2[0]);
             let playerMoves = playModel.getMoves(playerPokemon);
             if(turnOrder[0] == 1){
-                if(doDamage(opponentTeamHp[0], calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
+                if(playModel.doDamage(opponentTeamHp[0], playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
                     opponentTeamHp.shift();
                     aiModel.teamSwitch(opponentTeam);
                 }else{
-                    opponentTeamHp[0] -= calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
-                    if(doDamage(playerTeamHp[activeIndex], calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon])) <= 0){
+                    opponentTeamHp[0] -= playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
+                    if(playModel.doDamage(playerTeamHp[activeIndex], playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])) <= 0){
                         playerTeam.splice(activeIndex, 1);
                         forceChange();
                     }else{
-                        playerTeamHp[activeIndex] -= calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon]);
+                        playerTeamHp[activeIndex] -= playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon]);
                     }
                 }
             }else{
-                if(doDamage(playerTeamHp[activeIndex], calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon])) <= 0){
+                if(playModel.doDamage(playerTeamHp[activeIndex], playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])) <= 0){
                         playerTeam.splice(activeIndex, 1);
                         forceChange();
                 }else{
-                    playerTeamHp[activeIndex] -= calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon]);
-                    if(doDamage(opponentTeamHp[0], calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
+                    playerTeamHp[activeIndex] -= playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon]);
+                    if(playModel.doDamage(opponentTeamHp[0], playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
                         opponentTeamHp.shift();
                         aiModel.teamSwitch(opponentTeam);
                     }else{
-                        opponentTeamHp[0] -= calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
+                        opponentTeamHp[0] -= playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
                 }
             }
         }
