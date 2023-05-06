@@ -22,6 +22,6 @@ router.get('/', function(req, res) {
 
 router.get('/play', function(req, res) {
   debug.log(aiModel.teamCreate());
-  res.render('game', {title: "test", bg: selected_file, pokemon1: "mewtwo", pokemon2: "poliwrath", calcDamage: playModel.calcDamage("charizard", "blastoise", "Flamethrower")});
+  res.render('game', {title: "test", bg: playModel.generateBackground(), pokemon1: "mewtwo", pokemon2: "poliwrath", calcDamage: playModel.calcDamage("charizard", "blastoise", "Flamethrower")});
 });
 module.exports = router;
