@@ -596,6 +596,29 @@
               "Calm Mind": {"type": "Psychic", "Category": "Status", "power": null, "Accuracy": null},
               "Seismic Toss": {"type": "Fighting", "Category": "Physical", "power": null, "Accuracy": 100}
             }
+          },
+          "Seaking": {
+            "Moveset": {
+              "Waterfall": {"Type": "Water", "Category": "Physical", "Power": 80, "Accuracy": 100},
+              "Megahorn": {"Type": "Bug", "Category": "Physical", "Power": 120, "Accuracy": 85},
+              "Drill Run": {"Type": "Ground", "Category": "Physical", "Power": 80, "Accuracy": 95},
+              "Ice Beam": {"Type": "Ice", "Category": "Special", "Power": 90, "Accuracy": 100}
+            }
+          },
+          "Rhydon": {
+            "Moveset": {
+              "Earthquake": {"Type": "Ground", "Category": "Physical", "Power": 100, "Accuracy": 100},
+              "Stone Edge": {"Type": "Rock", "Category": "Physical", "Power": 100, "Accuracy": 80},
+              "Megahorn": {"Type": "Bug", "Category": "Physical", "Power": 120, "Accuracy": 85},
+              "Ice Punch": {"Type": "Ice", "Category": "Physical", "Power": 75, "Accuracy": 100}
+            }
+          },  "Snorlax": {
+            "Moveset": {
+              "Body Slam": {"Type": "Normal", "Category": "Physical", "Power": 85, "Accuracy": 100},
+              "Earthquake": {"Type": "Ground", "Category": "Physical", "Power": 100, "Accuracy": 100},
+              "Crunch": {"Type": "Dark", "Category": "Physical", "Power": 80, "Accuracy": 100},
+              "Rest": {"Type": "Psychic", "Category": "Status", "Power": 101, "Accuracy": 100}
+            }
           }
         }
         
