@@ -152,4 +152,11 @@ function generateHp(team){
 	}
 	return HpArray;
 }
-module.exports = {calcDamage, isEffective, doDamage, isFaster, forceChange, turnOrdering, generateHp};
+
+function getMoves(pokemon, number) {
+	const pokemon_c = pokemon.charAt(0).toUpperCase() + pokemon.slice(1);
+	const move = moves[pokemon_c];
+	return Object.keys(move.moveset)[number];
+}
+
+module.exports = {calcDamage, isEffective, doDamage, isFaster, forceChange, turnOrdering, generateHp, getMoves};
