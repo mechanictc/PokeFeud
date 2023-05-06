@@ -74,7 +74,6 @@ function isEffective(atk_type, def_type) {
 	}
 	return 1;
 }
-
 function generateBackground() {
 	const directory = './public/images/backgrounds';
 	let selected_file = "bg-city";
