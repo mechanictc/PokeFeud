@@ -36,12 +36,11 @@
         <div class = "inter">
             <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="opponentTurn(0)" style = "; width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1[0], 0) %></button>
+            <button class="move" id="move1" onclick="opponentTurn(0)" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1[0], 0) %></button>
             <button class="move" id="move2" onclick="opponentTurn(1)" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1[0], 1) %></button>
             <button class="move" id="move3" onclick="opponentTurn(2)" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1[0], 2) %></button>
             <button class="move" id="move4" onclick="opponentTurn(3)" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1[0], 3) %></button>
         </div>
-            <button type = "button" class="switch" id = "swit1" onclick="switched(1, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[1]%></button>
             <button type = "button" class="switch" id = "swit1" onclick="switched(1, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[1]%></button>
             <button type = "button" class="switch" id = "swit2" onclick="switched(2, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[2]%></button>
             <button type = "button" class="switch" id = "swit3" onclick="switched(3, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[3]%></button>
