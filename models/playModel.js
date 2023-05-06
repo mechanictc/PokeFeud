@@ -113,4 +113,17 @@ function isDead(currentPokemonHp, incomingDamage){
 		return false;
 	}
 }
-module.exports = {calcDamage, isEffective, isDead, isFaster, generateBackground};
+/**
+ * Force Player to change Pokemon. Disables moves and changes action text during
+ */
+function forceChange(){
+	var actionText = document.getElementById('action-text');
+	var moveContainer = document.getElementById('button-container');
+	moveContainer.toggle();
+	actionText.innerHTML = "Change Pokemon";
+	document.getElementById("switch-pokemon").onclick = function battleUI() {
+		moveContainer.toggle();
+		actionText.innerHTML = "What will you do?";
+	}
+}
+module.exports = {calcDamage, isEffective, isDead, isFaster, generateBackground, forceChange};
