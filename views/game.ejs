@@ -2,9 +2,10 @@
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
-        let playerTeam = [1,2,3,4,5,6];
+        let playerTeam = '<%=team1%>';
+        var stip = playerTeam.split(",")
         let opponentTeam = [1,2,3,4,5,6];
-        let playerPokemon = playerTeam[0];
+        let playerPokemon = stip[0];
         let opponentPokemon = opponentTeam[0];
     </script>
     </head>
@@ -24,12 +25,11 @@
             <button class="move" id="move3" onclick="opponentTurn(2)">testing</button>
             <button class="move" id="move4" onclick="opponentTurn(3)">boing</button>
         </div>
-            <button type = "button" class="switch" id = "swit1" onclick="switched(0, '<%=team1%>')"><%=team1[0]%></button>
-            <button type = "button" class="switch" id = "swit2" onclick="switched(1, '<%=team1%>')"><%=team1[1]%></button>
-            <button type = "button" class="switch" id = "swit3" onclick="switched(2, '<%=team1%>')"><%=team1[2]%></button>
-            <button type = "button" class="switch" id = "swit4" onclick="switched(3, '<%=team1%>')"><%=team1[3]%></button>
-            <button type = "button" class="switch" id = "swit5" onclick="switched(4, '<%=team1%>')"><%=team1[4]%></button>
-            <button type = "button" class="switch" id = "swit6" onclick="switched(5, '<%=team1%>')"><%=team1[5]%></button>
+            <button type = "button" class="switch" id = "swit1" onclick="switched(1, '<%=team1%>')"><%=team1[1]%></button>
+            <button type = "button" class="switch" id = "swit2" onclick="switched(2, '<%=team1%>')"><%=team1[2]%></button>
+            <button type = "button" class="switch" id = "swit3" onclick="switched(3, '<%=team1%>')"><%=team1[3]%></button>
+            <button type = "button" class="switch" id = "swit4" onclick="switched(4, '<%=team1%>')"><%=team1[4]%></button>
+            <button type = "button" class="switch" id = "swit5" onclick="switched(5, '<%=team1%>')"><%=team1[5]%></button>
         </center>
     </body>
     <script>
@@ -39,11 +39,17 @@
             playModel.turnOrdering(moveNumber);
         }
         function switched(x,team){
-            var splitString = team.split(",")
-            var y = splitString[x];
+            var currteam =  stip
+            var y = currteam[x];
             var newX = String(x);
             var currelem = document.getElementById("bsprite");
-            currelem.src = "/images/back/" + y + ".png";
+            var t = x
+            var v = document.getElementById("swit"+t)
+            var c = v.innerHTML
+            currelem.src = "/images/back/" + v.innerHTML + ".png";
+            c = v.innerHTML
+            v.innerHTML = playerPokemon
+            playerPokemon = c
         }
     </script>
 </html>
