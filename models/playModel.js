@@ -91,17 +91,13 @@ function isFaster(pokemon1, pokemon2){
 	}
 }
 /**
- * Check dead
+ * Lower HP
  * @param currentPokemonHp-Current Hp of selected Pokemon
  * @param incomingDamage-Damage after calculating effectiveness, damage reductions
- * @return True if Pokemon is dead, false if Pokemon is alive
+ * @return current pokemon health
  */
-function isDead(currentPokemonHp, incomingDamage){
-	if(currentPokemonHp <= incomingDamage){
-		return true;
-	}else{
-		return false;
-	}
+function doDamage(currentPokemonHp, incomingDamage){
+	return currentPokemonHp-incomingDamage;
 }
 /**
  * Force Player to change Pokemon. Disables moves and changes action text during
@@ -116,4 +112,31 @@ function forceChange(){
 		actionText.innerHTML = "What will you do?";
 	}
 }
-module.exports = {calcDamage, isEffective, isDead, isFaster, forceChange};
+/**
+ * Does all the turn work, speed checks, damage calcs. Run in game.ejs
+ */
+function turnOrdering(moveNumber){
+	let playerMove = playerPokemonMoves[moveNumber];
+	if(isFaster("pokemon1", team2[0])){
+		let damage = playModel.calcDamage("pokemon1", "pokemon2", playerMove);
+		if(playModel.doDamage(team2[0].hp, damage) <= 0){
+				aiModel.teamSwitch(opponentTeam);
+		}else{
+			let damage = playModel.calcDamage(team2[0], "pokemon1", "opponentMove");
+			if(doDamage('pokemon1'.hp, damage) <= 0){
+				playModel.forceChange();
+			}
+		}
+	}else{
+		let damage = playModel.calcDamage(team2[0], "pokemon1", "opponentMove");
+		if(playModel.doDamage('pokemon1'.hp, damage) <= 0){
+			playModel.forceChange();
+		}else{
+			let damage = playModel.calcDamage("pokemon1", team2[0], playerMove);
+			if(playModel.doDamage(team2[0].hp, damage) <= 0){
+				aiModel.teamSwitch(opponentTeam);
+			}
+		}
+	}
+}
+module.exports = {calcDamage, isEffective, doDamage, isFaster, forceChange, turnOrdering};
