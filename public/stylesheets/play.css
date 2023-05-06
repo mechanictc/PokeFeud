@@ -55,8 +55,8 @@ body {
   .move {
     background-color: lightgray;
     color: black;
-    height: 100px;
-    width: 200px;
+    height: 50%;
+    width: 50%;
     border-radius: 25px;
   }
   .switch {
@@ -94,4 +94,9 @@ body {
     background:green;
     top: 487px;
     left: 747px;
+  }
+  .inter{
+    position: absolute;
+    left: 30%;
+    top: 40%;
   }
