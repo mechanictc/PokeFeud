@@ -14,7 +14,7 @@
     <body>
         <embed src="/music/music.mp3" loop="true" autostart="true" width="0" height="0">
         <center><h1><%= title %></h1></center>
-        <center><img src = "/images/backgrounds/<%- bg %>"; style = "width: 50%; height: 50%;"></center>
+        <center><img src = "/images/backgrounds/<%= bg %>"; style = "width: 50%; height: 50%;"></center>
         <img src = "/images/back/<%= team1[0] %>.png" style = "position: relative; bottom: 250px; left: 300px; height: 50%; width: 25%">
         <img src = "/images/front/<%= team2[0] %>.png" style = "position: absolute; top: 100px; left: 675px; height: 300px; width: 300px;">
         <center>
@@ -27,6 +27,12 @@
             <button class="move" id="move3" onclick="opponentTurn(move3)">testing</button>
             <button class="move" id="move4" onclick="opponentTurn(move4)">boing</button>
         </div>
+            <button type = "button" id = "swit1" onclick="switched(0, '<%=team1%>')"><%=team1[0]%></button>
+            <button type = "button" id = "swit2" onclick="switched(1, '<%=team1%>')"><%=team1[1]%></button>
+            <button type = "button" id = "swit3" onclick="switched(2, '<%=team1%>')"><%=team1[2]%></button>
+            <button type = "button" id = "swit4"onclick="switched(3, '<%=team1%>')"><%=team1[3]%></button>
+            <button type = "button" id = "swit5"onclick="switched(4, '<%=team1%>')"><%=team1[4]%></button>
+            <button type = "button" id = "swit6"onclick="switched(5, '<%=team1%>')"><%=team1[5]%></button>
         </center>
     </body>
     <script>
@@ -54,6 +60,13 @@
                     }
                 }
             }
+        }
+        function switched(x,team){
+            var splitString = team.split(",")
+            var y = splitString[x];
+            var newX = String(x)
+            var currelem = document.getElementById("bsprite")
+            currelem.src = "/images/PBACK/"+y+".png"
         }
     </script>
 </html>

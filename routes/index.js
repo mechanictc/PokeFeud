@@ -24,6 +24,6 @@ router.get('/play', function(req, res) {
   const playerTeam = aiModel.teamCreate();
   const enemyTeam = aiModel.teamCreate();
   debug.log(aiModel.teamCreate());
-  res.render('game', {title: "test", bg: playModel.generateBackground(), pokemon1: "mewtwo", pokemon2: "poliwrath", calcDamage: playModel.calcDamage("charizard", "blastoise", "Flamethrower")});
+  res.render('game', {title: "test", bg: playModel.generateBackground(), team1: playerTeam, team2: enemyTeam, calcDamage: playModel.calcDamage("charizard", "blastoise", "Flamethrower")});
 });
 module.exports = router;
