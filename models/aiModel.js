@@ -15,5 +15,13 @@ function teamSwitch(team){
 	const kia = team.shift()
 	return team[0]
 }
+function checkMove(aiPokemon, playerPokemon){
+	// ARGUMENTS SHOULD BE CURRENTLY SELECETD POKEMON
+	const aiMoves = moves[aiPokemon].moveset;
+	const playerMoves = moves[playerPokemon].moveset;
 
-module.exports = {teamCreate, teamSwitch};
+	for(move in playerMoves){
+		
+	}
+}
+module.exports = {teamCreate, teamSwitch, checkMove};
