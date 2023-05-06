@@ -22,6 +22,8 @@ router.get('/', function(req, res) {
 });
 
 router.get('/play', function(req, res) {
+  const playerTeam = aiModel.teamCreate();
+  const enemyTeam = aiModel.teamCreate();
   debug.log(aiModel.teamCreate());
   res.render('game', {title: "test", bg: playModel.generateBackground(), pokemon1: "mewtwo", pokemon2: "poliwrath", calcDamage: playModel.calcDamage("charizard", "blastoise", "Flamethrower")});
 });
