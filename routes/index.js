@@ -11,6 +11,6 @@ router.get('/', function(req, res) {
 });
 
 router.get('/play', function(req, res) {
-  res.render('game', {title: "test", calcDamage: playModel.calcDamage("charizard", "blastoise", "Flamethrower")});
+  res.render('game', {title: "test", pokemon1: "mewtwo", pokemon2: "poliwrath", calcDamage: playModel.calcDamage("charizard", "blastoise", "Flamethrower")});
 });
 module.exports = router;
