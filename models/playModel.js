@@ -74,7 +74,6 @@ function isEffective(atk_type, def_type) {
 	}
 	return 1;
 }
-
 function generateBackground() {
 	const directory = './public/images/backgrounds';
 	let selected_file = "bg-city";
@@ -85,4 +84,32 @@ function generateBackground() {
 		return selected_file;
 	});
 }
-module.exports = {calcDamage, isEffective, generateBackground};
+/**
+ * Speed Check
+ * @param pokemon1-Player's Pokemon
+ * @param pokemon2-Opponent's Pokemon
+ * @return-True if Player is faster, False if Opponent is faster, random if equal
+ */
+function isFaster(pokemon1, pokemon2){
+	if(pokemon1.speed > pokemon2.speed){
+		return true;
+	}else if(pokemon1.speed = pokemon2.speed){
+		return Math.random() < 0.5;
+	}else{
+		return false;
+	}
+}
+/**
+ * Check dead
+ * @param currentPokemonHp-Current Hp of selected Pokemon
+ * @param incomingDamage-Damage after calculating effectiveness, damage reductions
+ * @return True if Pokemon is dead, false if Pokemon is alive
+ */
+function isDead(currentPokemonHp, incomingDamage){
+	if(currentPokemonHp <= incomingDamage){
+		return true;
+	}else{
+		return false;
+	}
+}
+module.exports = {calcDamage, isEffective, isDead, isFaster};
