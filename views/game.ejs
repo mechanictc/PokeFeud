@@ -3,98 +3,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
-            var x = document.getElementById('moosic')
-            console.log(x)
-            x.play()
+            var music = document.getElementById('music');
+            music.play();
         });
-        // function switched(x,team){
-        //     var splitString = team.split(",")
-        //     var y = splitString[x];
-        //     var newX = String(x)
-        //     var currelem = document.getElementById("bsprite")
-        //     var currbtn = document.getElementById("swit" + x)
-        //     console.log(currbtn.innerHTML)
-        //     for(let i = 0; i<6; i++){
-        //         if()
-        //     }
-        //     currelem.src = "/images/PBACK/"+y+".png"
-        //     var t = team[x]
-        //     team[x] = 
-        //     console.log("done")
-        // }
-        function calcDamage(id, id2, bpwr, atktype, phy) {
-    if (phy == "Special") {
-        spd = pokemon[id].special_defense;
-        spd2 = pokemon[id2].special_defense;
-    }
-    else if (phy == "Physical") {
-        spd = pokemon[id].defense;
-        spd2 = pokemon[id2].defense;
-    }
-    else {
-        spd = 1;
-        spd2 = 1;
-    }
-    let type1 = pokemon_btype[id][0];
-    let type2 = "normal";
-    let type3 = "normal";
-    let STAB = 1;
-    try {
-        type2 = pokemon_btype[id][1];
-        type3 = pokemon_btype[id2][1];
-    }
-    catch (err) {
-    }
-    if (type1 == atktype || type2 == atktype) {
-        STAB = 1.5;
-    }
-    let dmg = (((2 * 100 * 1.95) / 5) + 2) * bpwr * (spd/ spd2);
-    let weak1 = isEffective(atktype, pokemon_btype[id2][0]);
-    let weak2 = isEffective(atktype, type3)
-    dmg /= 50;
-    dmg += 2;
-    dmg *= STAB * weak1 * weak2 * ((Math.random() * (255 - 217) + 217) / 255);
-    console.log(dmg)
-    return Math.floor(dmg);
-}
      </script>
     <head>
         <title><%= title %></title>
         <link rel='stylesheet' href='/stylesheets/play.css'/>
     </head>
     <body>
-        <audio id = 'moosic'>
-            <source src = "music/music.mp3" type="audio/mpeg">
-        </audio>
-        <embed src="/music/music.mp3" loop="true" autostart="true" width="2"
-        height="0">
+        <embed src="/music/music.mp3" loop="true" autostart="true" width="0" height="0">
         <center><h1><%= title %></h1></center>
-        <center><img src = "/images/battlebackground.png"; style = "width: 50%; height: 50%;;"></center>
-        <img src = "/images/PBACK/<%=team1%>.png" style = "position: absolute; top: 215px; left: 415px; height: 400px; width: 400px;">
-        <img src = "/images/PFRONT/<%=team2%>.png" style = "position: absolute; top: 100px; left: 675px; height: 300px; width: 300px;">
+        <center><img src = "/images/battlebackground.png"; style = "width: 50%; height: 50%;"></center>
+        <img src = "/images/back/mewtwo.png" style = "position: relative; bottom: 250px; left: 300px; height: 50%; width: 25%">
+        <img src = "/images/front/mewtwo.png" style = "position: absolute; top: 100px; left: 675px; height: 300px; width: 300px;">
         <center>
             <h1>What will you do?</h1>
-            <!-- <button type="button" id = "move" onclick=""><%= move1 %></button>
-        <button type="button" id = "move" onclick=""><%= move2 %></button>
-        <button type="button" id = "move" onclick=""><%= move3 %></button>
-        <button type="button" id = "move" onclick=""><%= move4 %></button> -->
+        </center>
+        <center>
         <div class = "button-container">
-            <button id = "move" onclick="calcDamage("<%=team1%>", "<%=team2%>", <%=team1%>.moveset[<%=move1%>].power, <%=team1%>.moveset[<%=move1%>].type.toLowerCase(), <%=team1%>.moveset[<%=move1%>].category)"><%= move1 %></button>
-            <button id = "move" onclick="calcDamage(team1, team2, team1.moveset[move2].power, team1.moveset[move2].type.toLowerCase(), team1.moveset[move2].category)"><%= move2 %></button>
-            <button id = "move" onclick="calcDamage(team1, team2, team1.moveset[move3].power, team1.moveset[move3].type.toLowerCase(), team1.moveset[move3].category)"><%= move3 %></button>
-            <button id = "move" onclick="calcDamage(team1, team2, team1.moveset[move4].power, team1.moveset[move4].type.toLowerCase(), team1.moveset[move4].category)"><%= move4 %></button>
+            <button class="move" id="move1" onclick="console.log(<%= calcDamage %>)"><%= calcDamage %></button>
+            <button class="move" id="move2" onclick="document.getElementById('move3').style.color = 'red';">change button3</button>
+            <button class="move" id="move3" onclick="">testing</button>
+            <button class="move" id="move4" onclick="isEffective('water', 'fire')">boing</button>
         </div>
-    <!-- </center>
-        <div id = "hpbg1"></div>
-        <div id = "hp1"></div>
-        <div id = "hpbg2"></div>
-        <div id = "hp2"></div>
-       <center><p>
-            <button type = "button" id = "swit1" onclick="switched(1, '<%=team1%>')"><%=team1[1]%></button>
-            <button type = "button" id = "swit2" onclick="switched(2, '<%=team1%>')"><%=team1[2]%></button>
-            <button type = "button" id = "swit3" onclick="switched(3, '<%=team1%>')"><%=team1[3]%></button>
-            <button type = "button" id = "swit4"onclick="switched(4, '<%=team1%>')"><%=team1[4]%></button>
-            <button type = "button" id = "swit5"onclick="switched(5, '<%=team1%>')"><%=team1[5]%></button>
-        </p></center> -->
+        </center>
     </body>
 </html>

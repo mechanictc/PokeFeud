@@ -17,16 +17,22 @@ body {
     display:inline-block;
     position:relative;
   }
-
+  .imgbox {
+      display: grid;
+      height: 50%;
+      width: 50%;
+      margin: 100px;
+  }
+  .center-fit {
+      max-width: 100%;
+      max-height: 100%;
+      margin: auto;
+  }
   .bg {
     z-index: -2;
     /* The image used */
     background-image: url("/images/battlebackground.png");
-  
-    /* Full height */
-    height: 100%;
-  
-    /* Center and scale the image nicely */
+
   }
   #back{
     z-index: -3 !important;
@@ -46,46 +52,46 @@ body {
     text-transform:uppercase;
     padding: 1em 1.5em;
   }
-  #move {
+  .move {
     background-color: lightgray;
     color: black;
     height: 100px;
     width: 200px;
     border-radius: 25px;
   }
-#swit{
-  width:13.3333333333%;
-  height: 10%;
-}
-#hpbg1{
-  position: absolute;
-  width:300px;
-  height:30px;
-  background:gray;
-  top: 150px;
-  left:400px;
-}
-#hp1{
-  position: absolute;
-  width:296px;
-  height:26px;
-  background:green;
-  top: 152px;
-  left:402px;
-}
-#hpbg2{
-  position: absolute;
-  width:300px;
-  height:30px;
-  background:gray;
-  top: 485px;
-  left:745px;
-}
-#hp2{
-  position: absolute;
-  width:296px;
-  height:26px;
-  background:green;
-  top: 487px;
-  left: 747px;
-}
+  #swit{
+    width:13.3333333333%;
+    height: 10%;
+  }
+  #hpbg1{
+    position: absolute;
+    width:300px;
+    height:30px;
+    background:gray;
+    top: 150px;
+    left:400px;
+  }
+  #hp1{
+    position: absolute;
+    width:296px;
+    height:26px;
+    background:green;
+    top: 152px;
+    left:402px;
+  }
+  #hpbg2{
+    position: absolute;
+    width:300px;
+    height:30px;
+    background:gray;
+    top: 485px;
+    left:745px;
+  }
+  #hp2{
+    position: absolute;
+    width:296px;
+    height:26px;
+    background:green;
+    top: 487px;
+    left: 747px;
+  }
