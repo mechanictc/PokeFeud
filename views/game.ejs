@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        let playerTeam = [1,2,3,4,5,6];
+        let opponentTeam = [1,2,3,4,5,6];
+        let playerPokemon = playerTeam[0];
+        let opponentPokemon = opponentTeam[0];
+    </script>
     <head>
         <title><%= title %></title>
         <link rel='stylesheet' href='/stylesheets/play.css'/>
@@ -16,16 +22,23 @@
         </center>
         <center>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="opponentTurn()"><%= calcDamage %></button>
-            <button class="move" id="move2" onclick="opponentTurn()">change button3</button>
-            <button class="move" id="move3" onclick="opponentTurn()">testing</button>
-            <button class="move" id="move4" onclick="opponentTurn()">boing</button>
+            <button class="move" id="move1" onclick="opponentTurn(move1)"><%= calcDamage %></button>
+            <button class="move" id="move2" onclick="opponentTurn(move2)">change button3</button>
+            <button class="move" id="move3" onclick="opponentTurn(move3)">testing</button>
+            <button class="move" id="move4" onclick="opponentTurn(move4)">boing</button>
         </div>
         </center>
     </body>
     <script>
-        function opponentTurn(){
-            console.log("opponent turn");
+        const playModel = require('../models/playModel');
+        function opponentTurn(playerMove){
+            if(playModel.isFaster("pokemon1", "pokemon2")){
+                let damage = playModel.calcDamage("pokemon1", "pokemon2", playerMove);
+                playModel.isDead("pokemon2", damage);
+            }else{
+                let damage = playModel.calcDamage("pokemon2", "pokemon1", "opponentMove");
+                playModel.isDead("pokemon1", damage);
+            }
         }
     </script>
 </html>
