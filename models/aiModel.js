@@ -16,4 +16,4 @@ function teamSwitch(team){
 	return team[0]
 }
 
-module.exports = {teamCreate};
+module.exports = {teamCreate, teamSwitch};

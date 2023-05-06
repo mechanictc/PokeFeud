@@ -18,7 +18,7 @@
         <img src = "/images/back/<%= team1[0] %>.png" style = "position: relative; bottom: 250px; left: 300px; height: 50%; width: 25%">
         <img src = "/images/front/<%= team2[0] %>.png" style = "position: absolute; top: 100px; left: 675px; height: 300px; width: 300px;">
         <center>
-            <h1>What will you do?</h1>
+            <h1 id="action-text">What will you do?</h1>
         </center>
         <center>
         <div class = "button-container">
@@ -31,13 +31,28 @@
     </body>
     <script>
         const playModel = require('../models/playModel');
+        const aiModel = require('../models/aiModel');
         function opponentTurn(playerMove){
             if(playModel.isFaster("pokemon1", "pokemon2")){
                 let damage = playModel.calcDamage("pokemon1", "pokemon2", playerMove);
-                playModel.isDead("pokemon2", damage);
+                if(playModel.isDead("pokemon2", damage)){
+                        aiModel.teamSwitch(opponentTeam);
+                }else{
+                    let damage = playModel.calcDamage("pokemon2", "pokemon1", "opponentMove");
+                    if(playModel.isDead("pokemon1", damage)){
+                        playModel.forceChange();
+                    }
+                }
             }else{
                 let damage = playModel.calcDamage("pokemon2", "pokemon1", "opponentMove");
-                playModel.isDead("pokemon1", damage);
+                if(playModel.isDead("pokemon1", damage)){
+                    playModel.forceChange();
+                }else{
+                    let damage = playModel.calcDamage("pokemon1", "pokemon2", playerMove);
+                    if(playModel.isDead("pokemon2", damage)){
+                        aiModel.teamSwitch(opponentTeam);
+                    }
+                }
             }
         }
     </script>
