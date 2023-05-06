@@ -8,17 +8,31 @@
         let playerPokemon = stip[0];
         let opponentPokemon = opponentTeam[0];
     </script>
+    <script>
+        const playModel = require('../models/playModel');
+        const aiModel = require('../models/aiModel');
+        function opponentTurn(moveNumber){
+            playModel.turnOrdering(moveNumber);
+        }
+        function switched(x,team){
+            var splitString = team.split(",")
+            var y = splitString[x];
+            var newX = String(x);
+            var currelem = document.getElementById("bsprite");
+            currelem.src = "/images/back/" + y + ".png";
+        }
+    </script>
     </head>
     <body>
         <embed src="/music/music.mp3" loop="true" autostart="true" width="0" height="0">
         <center><h1><%= title %></h1></center>
         <center><img src = "/images/backgrounds/<%= bg %>"; style = "width: 50%; height: 50%;"></center>
-        <img src = "/images/back/<%= team1[0] %>.png" id = "bsprite" style = "position: relative; bottom: 250px; left: 300px; height: 50%; width: 25%">
-        <img src = "/images/front/<%= team2[0] %>.png" style = "position: absolute; top: 100px; left: 675px; height: 300px; width: 300px;">
         <center>
-            <h1 id="action-text">What will you do?</h1>
+            <img src = "/images/back/<%= team1[0] %>.png" id = "bsprite" style = "position: relative; bottom: 250px; left: 0px; height: 50%; width: 25%">
+            <img src = "/images/front/<%= team2[0] %>.png" style = "position: relative; bottom: 450px; left: 0px; height: 50%; width: 25%">
         </center>
         <center>
+            <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
             <button class="move" id="move1" onclick="opponentTurn(0)"><%= calcDamage %></button>
             <button class="move" id="move2" onclick="opponentTurn(1)">change button3</button>
