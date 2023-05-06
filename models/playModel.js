@@ -74,6 +74,17 @@ function isEffective(atk_type, def_type) {
 	}
 	return 1;
 }
+
+function generateBackground() {
+	const directory = './public/images/backgrounds';
+	let selected_file = "bg-city";
+
+	randomFile(directory, (err, file) => {
+		selected_file = file;
+		debug.log("selected file: " + selected_file);
+		return selected_file;
+	});
+}
 /**
  * Speed Check
  * @param pokemon1-Player's Pokemon
