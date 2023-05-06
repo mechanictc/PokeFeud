@@ -5,7 +5,7 @@ function teamCreate() {
 	const names = Object.keys(pokemon);
 	let finalTeam = [];
 	for(let i = 0; i < 6; i++) {
-		let randomSelect = Math.floor(Math.random() * 75);
+		let randomSelect = Math.floor(Math.random() * 74);
 		if (!finalTeam.includes(names[randomSelect]))
 			finalTeam.push(names[randomSelect]);
 	}
