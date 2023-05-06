@@ -2,11 +2,14 @@
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
+        let playModel = require('../models/playModel')
         let playerTeam = '<%=team1%>';
         var stip = playerTeam.split(",")
-        let opponentTeam = [1,2,3,4,5,6];
+        let opponentTeam = '<%=team2%>';
         let playerPokemon = stip[0];
         let opponentPokemon = opponentTeam[0];
+        let playerTeamHp = playModel.generateHp(playerTeam);
+        let opponentTeamHp = playModel.generateHp(opponentTeam);
     </script>
     </head>
     <body>
@@ -40,10 +43,10 @@
         const playModel = require('../models/playModel');
         const aiModel = require('../models/aiModel');
         function opponentTurn(moveNumber){
-            playModel.turnOrdering(moveNumber);
+            playModel.turnOrdering(playerPokemon, team2, team2[0], moveNumber);
         }
         function switched(x,team){
-            var currteam =  stip
+            var currteam = stip
             var y = currteam[x];
             var newX = String(x);
             var currelem = document.getElementById("bsprite");
