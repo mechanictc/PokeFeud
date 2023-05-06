@@ -59,27 +59,7 @@ body {
     width: 200px;
     border-radius: 25px;
   }
-  #swit1{
-    width:16%;
-    height: 50px;
-  }
-  #swit2{
-    width:16%;
-    height: 50px;
-  }
-  #swit3{
-    width:16%;
-    height: 50px;
-  }
-  #swit4{
-    width:16%;
-    height: 50px;
-  }
-  #swit5{
-    width:16%;
-    height: 50px;
-  }
-  #swit6{
+  .switch {
     width:16%;
     height: 50px;
   }

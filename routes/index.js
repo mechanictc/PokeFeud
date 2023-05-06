@@ -5,6 +5,7 @@ const playModel = require('../models/playModel');
 const debug = require('../models/debugModel');
 const aiModel = require('../models/aiModel')
 const pokemon = require('../pokemon.json')
+const randomFile = require('select-random-file');
 
 
 //EVERYBODY INSTALL THIS
@@ -23,7 +24,12 @@ router.get('/', function(req, res) {
 router.get('/play', function(req, res) {
   const playerTeam = aiModel.teamCreate();
   const enemyTeam = aiModel.teamCreate();
-  debug.log(aiModel.teamCreate());
-  res.render('game', {title: "test", bg: playModel.generateBackground(), team1: playerTeam, team2: enemyTeam, calcDamage: playModel.calcDamage("charizard", "blastoise", "Flamethrower")});
+  const directory = './public/images/backgrounds';
+	randomFile(directory, (err, file) => {
+		debug.log("selected file: " + file);
+    debug.log(aiModel.teamCreate());
+    res.render('game', {title: "test", bg: file, team1: playerTeam, team2: enemyTeam, calcDamage: playModel.calcDamage("charizard", "blastoise", "Flamethrower")});
+	});
+ 
 });
 module.exports = router;
