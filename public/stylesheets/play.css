@@ -59,9 +59,29 @@ body {
     width: 200px;
     border-radius: 25px;
   }
-  #swit{
-    width:13.3333333333%;
-    height: 10%;
+  #swit1{
+    width:16%;
+    height: 50px;
+  }
+  #swit2{
+    width:16%;
+    height: 50px;
+  }
+  #swit3{
+    width:16%;
+    height: 50px;
+  }
+  #swit4{
+    width:16%;
+    height: 50px;
+  }
+  #swit5{
+    width:16%;
+    height: 50px;
+  }
+  #swit6{
+    width:16%;
+    height: 50px;
   }
   #hpbg1{
     position: absolute;
