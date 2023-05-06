@@ -31,7 +31,7 @@ body {
   .bg {
     z-index: -2;
     /* The image used */
-    background-image: url("/images/battlebackground.png");
+    background-image: url("/images/background/bg-beach");
 
   }
   #back{
