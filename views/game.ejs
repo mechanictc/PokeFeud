@@ -7,25 +7,22 @@
         let playerPokemon = playerTeam[0];
         let opponentPokemon = opponentTeam[0];
     </script>
-    <head>
-        <title><%= title %></title>
-        <link rel='stylesheet' href='/stylesheets/play.css'/>
     </head>
     <body>
         <embed src="/music/music.mp3" loop="true" autostart="true" width="0" height="0">
         <center><h1><%= title %></h1></center>
         <center><img src = "/images/backgrounds/<%= bg %>"; style = "width: 50%; height: 50%;"></center>
-        <img src = "/images/back/<%= team1[0] %>.png" style = "position: relative; bottom: 250px; left: 300px; height: 50%; width: 25%">
+        <img src = "/images/back/<%= team1[0] %>.png" id = "bsprite" style = "position: relative; bottom: 250px; left: 300px; height: 50%; width: 25%">
         <img src = "/images/front/<%= team2[0] %>.png" style = "position: absolute; top: 100px; left: 675px; height: 300px; width: 300px;">
         <center>
             <h1 id="action-text">What will you do?</h1>
         </center>
         <center>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="opponentTurn(move1)"><%= calcDamage %></button>
-            <button class="move" id="move2" onclick="opponentTurn(move2)">change button3</button>
-            <button class="move" id="move3" onclick="opponentTurn(move3)">testing</button>
-            <button class="move" id="move4" onclick="opponentTurn(move4)">boing</button>
+            <button class="move" id="move1" onclick="opponentTurn(0)"><%= calcDamage %></button>
+            <button class="move" id="move2" onclick="opponentTurn(1)">change button3</button>
+            <button class="move" id="move3" onclick="opponentTurn(2)">testing</button>
+            <button class="move" id="move4" onclick="opponentTurn(3)">boing</button>
         </div>
             <button type = "button" class="switch" id = "swit1" onclick="switched(0, '<%=team1%>')"><%=team1[0]%></button>
             <button type = "button" class="switch" id = "swit2" onclick="switched(1, '<%=team1%>')"><%=team1[1]%></button>
@@ -38,35 +35,15 @@
     <script>
         const playModel = require('../models/playModel');
         const aiModel = require('../models/aiModel');
-        function opponentTurn(playerMove){
-            if(playModel.isFaster("pokemon1", "pokemon2")){
-                let damage = playModel.calcDamage("pokemon1", "pokemon2", playerMove);
-                if(playModel.isDead("pokemon2", damage)){
-                        aiModel.teamSwitch(opponentTeam);
-                }else{
-                    let damage = playModel.calcDamage("pokemon2", "pokemon1", "opponentMove");
-                    if(playModel.isDead("pokemon1", damage)){
-                        playModel.forceChange();
-                    }
-                }
-            }else{
-                let damage = playModel.calcDamage("pokemon2", "pokemon1", "opponentMove");
-                if(playModel.isDead("pokemon1", damage)){
-                    playModel.forceChange();
-                }else{
-                    let damage = playModel.calcDamage("pokemon1", "pokemon2", playerMove);
-                    if(playModel.isDead("pokemon2", damage)){
-                        aiModel.teamSwitch(opponentTeam);
-                    }
-                }
-            }
+        function opponentTurn(moveNumber){
+            playModel.turnOrdering(moveNumber);
         }
         function switched(x,team){
             var splitString = team.split(",")
             var y = splitString[x];
-            var newX = String(x)
-            var currelem = document.getElementById("bsprite")
-            currelem.src = "/images/PBACK/"+y+".png"
+            var newX = String(x);
+            var currelem = document.getElementById("bsprite");
+            currelem.src = "/images/back/" + y + ".png";
         }
     </script>
 </html>
