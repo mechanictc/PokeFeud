@@ -101,43 +101,15 @@ function doDamage(currentPokemonHp, incomingDamage){
 	return currentPokemonHp-incomingDamage;
 }
 /**
- * Force Player to change Pokemon. Disables moves and changes action text during
+ * Returns turn order
+ * @param playerPokemon, opponentPokemon-self-explanatory
+ * @return-1 is player, 2 is opponent
  */
-function forceChange(){
-	var actionText = document.getElementById('action-text');
-	var moveContainer = document.getElementById('button-container');
-	moveContainer.toggle();
-	actionText.innerHTML = "Change Pokemon";
-	document.getElementById("switch-pokemon").onclick = function battleUI() {
-		moveContainer.toggle();
-		actionText.innerHTML = "What will you do?";
-	}
-}
-/**
- * Does all the turn work, speed checks, damage calcs. Run in game.ejs
- */
-function turnOrdering(playerPokemon, opponentTeam, opponentPokemon ,moveNumber){
-	let playerMoves = moves[playerPokemon].moveset;
+function turnOrdering(playerPokemon, opponentPokemon){
 	if(isFaster(playerPokemon, opponentPokemon)){
-		let damage = playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
-		if(playModel.doDamage(opponentPokemon.hp, damage) <= 0){
-				aiModel.teamSwitch(opponentTeam);
-		}else{
-			let damage = playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove(opponentPokemon, playerPokemon));
-			if(doDamage(playerPokemon.hp, damage) <= 0){
-				playModel.forceChange();
-			}
-		}
+		return [1,2]
 	}else{
-		let damage = playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove(opponentPokemon, playerPokemon));
-		if(playModel.doDamage(playerPokemon.hp, damage) <= 0){
-			playModel.forceChange();
-		}else{
-			let damage = playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
-			if(playModel.doDamage(opponentPokemon.hp, damage) <= 0){
-				aiModel.teamSwitch(opponentTeam);
-			}
-		}
+		return [2,1]
 	}
 }
 /**
