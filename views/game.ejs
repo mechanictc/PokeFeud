@@ -2,14 +2,31 @@
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
-        let playModel = require('../models/playModel')
         let playerTeam = '<%=team1%>';
         var stip = playerTeam.split(",")
         let opponentTeam = '<%=team2%>';
+        var stip2 = playerTeam.split(",")
         let playerPokemon = stip[0];
-        let opponentPokemon = opponentTeam[0];
+        let opponentPokemon = stip2[0];
         let playerTeamHp = playModel.generateHp(playerTeam);
         let opponentTeamHp = playModel.generateHp(opponentTeam);
+        function opponentTurn(moveNumber){
+            playModel.turnOrdering(playerPokemon, team2, team2[0], moveNumber);
+        }
+        function switched(x,team){
+            var currteam = stip
+            var y = currteam[x];
+            console.log(y)
+            var newX = String(x);
+            var currelem = document.getElementById("bsprite");
+            var t = x
+            var v = document.getElementById("swit"+t)
+            var c = v.innerHTML
+            currelem.src = "/images/back/" + v.innerHTML + ".png";
+            c = v.innerHTML
+            v.innerHTML = playerPokemon
+            playerPokemon = c
+        }
     </script>
     </head>
     <body>
@@ -39,24 +56,4 @@
         <div id = "hpbg2"></div>
         <div id = "hp2"></div>
     </body>
-    <script>
-        const playModel = require('../models/playModel');
-        const aiModel = require('../models/aiModel');
-        function opponentTurn(moveNumber){
-            playModel.turnOrdering(playerPokemon, team2, team2[0], moveNumber);
-        }
-        function switched(x,team){
-            var currteam = stip
-            var y = currteam[x];
-            var newX = String(x);
-            var currelem = document.getElementById("bsprite");
-            var t = x
-            var v = document.getElementById("swit"+t)
-            var c = v.innerHTML
-            currelem.src = "/images/back/" + v.innerHTML + ".png";
-            c = v.innerHTML
-            v.innerHTML = playerPokemon
-            playerPokemon = c
-        }
-    </script>
 </html>
