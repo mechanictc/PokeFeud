@@ -1,14 +1,15 @@
 const pokemon = require('../pokemon.json');
 const moves = require('../moves');
 
-function teamCreate(){
-	const names = Object.keys(pokemon)
-	let finalTeam = []
-	for(let i=0; i<6; i++){
+function teamCreate() {
+	const names = Object.keys(pokemon);
+	let finalTeam = [];
+	for(let i = 0; i < 6; i++) {
 		let randomSelect = Math.floor(Math.random() * 75);
-		const add = finalTeam.push(names[randomSelect])
+		if (!finalTeam.includes(names[randomSelect]))
+			finalTeam.push(names[randomSelect]);
 	}
-	return finalTeam
+	return finalTeam;
 }
 
 function teamSwitch(team){
@@ -16,7 +17,7 @@ function teamSwitch(team){
 	return team[0]
 }
 function chooseMove(aiPokemon, playerPokemon){
-	// ARGUMENTS SHOULD BE CURRENTLY SELECETD POKEMON
+	// ARGUMENTS SHOULD BE CURRENTLY SELECTED POKEMON
 	const aiMoves = moves[aiPokemon].moveset;
 	const playerMoves = moves[playerPokemon].moveset;
 	let strongestMove = aiMoves[0];
