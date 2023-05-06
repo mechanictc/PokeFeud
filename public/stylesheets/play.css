@@ -97,7 +97,6 @@ body {
   }
   .inter{
     position: absolute;
-    left:0px;
-    top:450px !important;
-    z-index: 4 !important;
+    left: 30%;
+    top: 40%;
   }
