@@ -40,10 +40,10 @@
         </center>
         <center>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="opponentTurn(0)"><%= calcDamage %></button>
-            <button class="move" id="move2" onclick="opponentTurn(1)">change button3</button>
-            <button class="move" id="move3" onclick="opponentTurn(2)">testing</button>
-            <button class="move" id="move4" onclick="opponentTurn(3)">boing</button>
+            <button class="move" id="move1" onclick="opponentTurn(0)"><%= playModel.getMoves(team1[0], 0) %></button>
+            <button class="move" id="move2" onclick="opponentTurn(1)"><%= playModel.getMoves(team1[0], 1) %></button>
+            <button class="move" id="move3" onclick="opponentTurn(2)"><%= playModel.getMoves(team1[0], 2) %></button>
+            <button class="move" id="move4" onclick="opponentTurn(3)"><%= playModel.getMoves(team1[0], 3) %></button>
         </div>
             <button type = "button" class="switch" id = "swit1" onclick="switched(1, '<%=team1%>')"><%=team1[1]%></button>
             <button type = "button" class="switch" id = "swit2" onclick="switched(2, '<%=team1%>')"><%=team1[2]%></button>
