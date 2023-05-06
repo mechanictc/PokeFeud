@@ -11,4 +11,9 @@ function teamCreate(){
 	return finalTeam
 }
 
+function teamSwitch(team){
+	const kia = team.shift()
+	return team[0]
+}
+
 module.exports = {teamCreate};
