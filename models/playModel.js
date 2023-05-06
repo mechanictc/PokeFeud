@@ -9,6 +9,7 @@ const pokemon_type = require('../pokemon_type.json');
 const moves = require('../moves');
 const type_chart = require('../type_chart')
 const debug = require('./debugModel');
+const randomFile = require('select-random-file');
 /**
  * Calculates the damage dealt from pokemon1 to pokemon2 including modifiers
  * 
