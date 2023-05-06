@@ -1,4 +1,4 @@
-const pokemon = require('../pokemon.json')
+const pokemon = require('../pokemon.json');
 const moves = require('../moves');
 
 function teamCreate(){
@@ -15,13 +15,16 @@ function teamSwitch(team){
 	const kia = team.shift()
 	return team[0]
 }
-function checkMove(aiPokemon, playerPokemon){
+function chooseMove(aiPokemon, playerPokemon){
 	// ARGUMENTS SHOULD BE CURRENTLY SELECETD POKEMON
 	const aiMoves = moves[aiPokemon].moveset;
 	const playerMoves = moves[playerPokemon].moveset;
-
-	for(move in playerMoves){
-		
+	let strongestMove = aiMoves[0];
+	for(move in aiMoves){
+		if(calcDamage(aiPokemon, playerPokemon, move) > calcDamage(aiPokemon, playerPokemon, strongestMove)){
+			strongestMove = move;
+		}
 	}
+	return strongestMove;
 }
-module.exports = {teamCreate, teamSwitch, checkMove};
+module.exports = {teamCreate, teamSwitch, chooseMove};
