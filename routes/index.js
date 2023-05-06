@@ -29,7 +29,7 @@ router.get('/play', function(req, res) {
 	randomFile(directory, (err, file) => {
 		debug.log("selected file: " + file);
     debug.log(aiModel.teamCreate());
-    res.render('game', {title: "test", bg: file, team1: playerTeam, team2: enemyTeam, playModel: playModel});
+    res.render('game', {title: "test", bg: file, team1: playerTeam, team2: enemyTeam, aiModel: aiModel, playModel: playModel});
 	});
  
 });

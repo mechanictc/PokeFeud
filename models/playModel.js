@@ -116,28 +116,11 @@ function forceChange(){
 /**
  * Does all the turn work, speed checks, damage calcs. Run in game.ejs
  */
-function turnOrdering(playerPokemon, opponentTeam, opponentPokemon ,moveNumber){
-	let playerMoves = moves[playerPokemon].moveset;
+function turnOrdering(playerPokemon, opponentPokemon){
 	if(isFaster(playerPokemon, opponentPokemon)){
-		let damage = playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
-		if(playModel.doDamage(opponentPokemon.hp, damage) <= 0){
-				aiModel.teamSwitch(opponentTeam);
-		}else{
-			let damage = playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove(opponentPokemon, playerPokemon));
-			if(doDamage(playerPokemon.hp, damage) <= 0){
-				playModel.forceChange();
-			}
-		}
+		return [1,2]
 	}else{
-		let damage = playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove(opponentPokemon, playerPokemon));
-		if(playModel.doDamage(playerPokemon.hp, damage) <= 0){
-			playModel.forceChange();
-		}else{
-			let damage = playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
-			if(playModel.doDamage(opponentPokemon.hp, damage) <= 0){
-				aiModel.teamSwitch(opponentTeam);
-			}
-		}
+		return [2,1]
 	}
 }
 /**
@@ -147,16 +130,60 @@ function turnOrdering(playerPokemon, opponentTeam, opponentPokemon ,moveNumber){
  */
 function generateHp(team){
 	let HpArray = [];
-	for(teamPokemon in team){
-		HpArray.add(pokemon[teamPokemon].hp);
+	for(let i = 0; i < team.length; i++){
+		console.log(pokemon[team[i]].hp);
+		HpArray.push(pokemon[team[i]].hp);
 	}
 	return HpArray;
 }
-
+function forceChange(){
+    var actionText = document.getElementById('action-text');
+    var moveContainer = document.getElementById('button-container');
+    moveContainer.toggle();
+    actionText.innerHTML = "Change Pokemon";
+    document.getElementById("switch-pokemon").onclick = function battleUI() {
+        moveContainer.toggle();
+        actionText.innerHTML = "What will you do?";
+    }
+}
+function opponentTurn(playerTeam, playerTeamHp, opponentTeam, opponentTeamHp, activeIndex, moveNumber){
+	let playerPokemon = playerTeam[activeIndex]
+	let opponentPokemon = opponentTeam[0]
+    console.log(opponentTeamHp[0], playerTeamHp[activeIndex]);
+    let turnOrder = turnOrdering(playerPokemon, team2[0]);
+    let playerMoves = getMoves(playerPokemon);
+    if(turnOrder[0] == 1){
+        if(doDamage(opponentTeamHp[0], calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
+            opponentTeamHp.shift();
+            aiModel.teamSwitch(opponentTeam);
+        }else{
+            opponentTeamHp[0] -= calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
+            if(doDamage(playerTeamHp[activeIndex], calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])) <= 0){
+                playerTeam.splice(activeIndex, 1);
+                forceChange();
+            }else{
+                playerTeamHp[activeIndex] -= calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon]);
+            }
+        }
+    }else{
+        if(doDamage(playerTeamHp[activeIndex], calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])) <= 0){
+            playerTeam.splice(activeIndex, 1);
+            forceChange();
+        }else{
+            playerTeamHp[activeIndex] -= calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon]);
+            if(doDamage(opponentTeamHp[0], calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
+                opponentTeamHp.shift();
+                aiModel.teamSwitch(opponentTeam);
+            }else{
+                opponentTeamHp[0] -= calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
+            }
+        }
+    }
+}
 function getMoves(pokemon, number) {
 	const pokemon_c = pokemon.charAt(0).toUpperCase() + pokemon.slice(1);
 	const move = moves[pokemon_c];
 	return Object.keys(move.moveset)[number];
 }
 
-module.exports = {calcDamage, isEffective, doDamage, isFaster, forceChange, turnOrdering, generateHp, getMoves};
+module.exports = {calcDamage, isEffective, doDamage, isFaster, turnOrdering, generateHp, getMoves, opponentTurn, forceChange};

@@ -8,11 +8,10 @@
         var stip2 = playerTeam.split(",")
         let playerPokemon = stip[0];
         let opponentPokemon = stip2[0];
-        let playerTeamHp = playModel.generateHp(playerTeam);
-        let opponentTeamHp = playModel.generateHp(opponentTeam);
-        function opponentTurn(moveNumber){
-            playModel.turnOrdering(playerPokemon, team2, team2[0], moveNumber);
-        }
+        let activeIndex = 0;
+        console.log(team2)
+        let playerTeamHp = [<%=playModel.generateHp(team1)%>];
+        let opponentTeamHp = [<%=playModel.generateHp(team2)%>];
         function switched(x,team){
             var currteam = stip
             var y = currteam[x];
@@ -25,6 +24,7 @@
             c = v.innerHTML
             v.innerHTML = playerPokemon
             playerPokemon = c
+            activeIndex = x;
         }
     </script>
     </head>
