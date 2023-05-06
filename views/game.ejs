@@ -16,11 +16,16 @@
         </center>
         <center>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="console.log(<%= calcDamage %>)"><%= calcDamage %></button>
-            <button class="move" id="move2" onclick="document.getElementById('move3').style.color = 'red';">change button3</button>
-            <button class="move" id="move3" onclick="">testing</button>
-            <button class="move" id="move4" onclick="isEffective('water', 'fire')">boing</button>
+            <button class="move" id="move1" onclick="opponentTurn()"><%= calcDamage %></button>
+            <button class="move" id="move2" onclick="opponentTurn()">change button3</button>
+            <button class="move" id="move3" onclick="opponentTurn()">testing</button>
+            <button class="move" id="move4" onclick="opponentTurn()">boing</button>
         </div>
         </center>
     </body>
+    <script>
+        function opponentTurn(){
+            console.log("opponent turn");
+        }
+    </script>
 </html>
