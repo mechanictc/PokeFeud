@@ -5,7 +5,6 @@ const playModel = require('../models/playModel');
 const debug = require('../models/debugModel');
 const aiModel = require('../models/aiModel')
 const pokemon = require('../pokemon.json')
-const randomFile = require('select-random-file');
 
 
 //EVERYBODY INSTALL THIS
