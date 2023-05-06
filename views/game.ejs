@@ -11,48 +11,6 @@
         console.log(team2)
         let playerTeamHp = [<%=playModel.generateHp(team1)%>];
         let opponentTeamHp = [<%=playModel.generateHp(team2)%>];
-        function forceChange(){
-            var actionText = document.getElementById('action-text');
-            var moveContainer = document.getElementById('button-container');
-            moveContainer.toggle();
-            actionText.innerHTML = "Change Pokemon";
-            document.getElementById("switch-pokemon").onclick = function battleUI() {
-                moveContainer.toggle();
-                actionText.innerHTML = "What will you do?";
-	        }
-        }
-        function opponentTurn(moveNumber){
-            console.log(opponentTeamHp[0], playerTeamHp[activeIndex]);
-            let turnOrder = <%=playModel.turnOrdering(playerPokemon, team2[0])%>;
-            let playerMoves = <%=playModel.getMoves(playerPokemon)%>;
-            if(turnOrder[0] == 1){
-                if(<%=playModel.doDamage(opponentTeamHp[0], playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]))%> <= 0){
-                    opponentTeamHp.shift();
-                    aiModel.teamSwitch(opponentTeam);
-                }else{
-                    opponentTeamHp[0] -= <%=playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])%>;
-                    if(<%=playModel.doDamage(playerTeamHp[activeIndex], playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon]))%> <= 0){
-                        playerTeam.splice(activeIndex, 1);
-                        forceChange();
-                    }else{
-                        playerTeamHp[activeIndex] -= <%=playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])%>;
-                    }
-                }
-            }else{
-                if(<%=playModel.doDamage(playerTeamHp[activeIndex], playModel.calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon]))%> <= 0){
-                        playerTeam.splice(activeIndex, 1);
-                        forceChange();
-                }else{
-                    playerTeamHp[activeIndex] -= <%=playModel.calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon])%>;
-                    if(<%=playModel.doDamage(opponentTeamHp[0], playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]))%> <= 0){
-                        opponentTeamHp.shift();
-                        aiModel.teamSwitch(opponentTeam);
-                    }else{
-                        opponentTeamHp[0] -= <%=playModel.calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])%>;
-                }
-            }
-        }
-    }
         function switched(x,team){
             var currteam = stip
             var y = currteam[x];
