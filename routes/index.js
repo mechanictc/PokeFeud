@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const moves = require('../moves');
 const playModel = require('../models/playModel');
+const debug = require('../models/debugModel');
 const aiModel = require('../models/aiModel')
 const pokemon = require('../pokemon.json')
 const randomFile = require('select-random-file');

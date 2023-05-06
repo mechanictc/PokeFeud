@@ -112,4 +112,4 @@ function isDead(currentPokemonHp, incomingDamage){
 		return false;
 	}
 }
-module.exports = {calcDamage, isEffective, isDead, isFaster};
+module.exports = {calcDamage, isEffective, isDead, isFaster, generateBackground};
