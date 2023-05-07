@@ -25,7 +25,7 @@ router.get('/', function(req, res) {
 router.get('/play', function(req, res) {
   const playerTeam = aiModel.teamCreate();
   const enemyTeam = aiModel.teamCreate();
-  const directory = './public/images/backgrounds';
+  const directory = '../public/images/backgrounds';
 	randomFile(directory, (err, file) => {
 		debug.log("selected file: " + file);
     debug.log(aiModel.teamCreate());
