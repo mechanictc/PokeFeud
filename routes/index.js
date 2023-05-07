@@ -34,12 +34,12 @@ router.get('/play', function(req, res) {
  
 });
 
-router.get('/die', function(req, res) {
-	res.render("die")
+router.get('/lose', function(req, res) {
+	res.render('lose')
 });
 
 router.get('/win', function(req, res) {
-	res.render("win")
+	res.render('win')
 });
 
 module.exports = router;
