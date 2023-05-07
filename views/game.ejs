@@ -7,12 +7,16 @@
 		let playerHp = <%=pokemon[team1].hp%> * 3
 		let opponentHp = <%=pokemon[team2].hp%> * 3
 
-		function update(damage){
-		    document.getElementById("playerHealth").innerHTML = playerHp;
-		    document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
+	    function update(damage){
+		    let opponentDamage = Math.floor(Math.random() * 150);
+			
+			document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage;
+			document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
 			opponentHp -= damage/2;
+			playerHp -= opponentDamage;
+
 		}
-	</script>
+			</script>
     <body>
         <embed src="/music/music.mp3" loop="true" autostart="true" width="0" height="0">
         <center><h1><%= title %></h1></center>

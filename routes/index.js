@@ -29,8 +29,17 @@ router.get('/play', function(req, res) {
 	randomFile(directory, (err, file) => {
 		debug.log("selected file: " + file);
     debug.log(aiModel.teamCreate());
-    res.render('game', {title: "test", bg: file, team1: playerTeam, team2: enemyTeam, playModel: playModel, pokemon:pokemon});
+    res.render('game', {title: "test", bg: file, team1: playerTeam, team2: enemyTeam, playModel: playModel, pokemon:pokemon, aiModel: aiModel});
 	});
  
 });
+
+router.get('/die', function(req, res) {
+	res.render("die")
+});
+
+router.get('/win', function(req, res) {
+	res.render("win")
+});
+
 module.exports = router;
