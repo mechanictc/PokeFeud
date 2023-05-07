@@ -1,0 +1,8 @@
+.bg {
+    z-index: -1;
+    background-image: url("/images/bg-index.jpeg");
+    height: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

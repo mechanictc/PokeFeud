@@ -30,7 +30,13 @@ router.get('/play', function(req, res) {
 		debug.log("selected file: " + file);
     debug.log(aiModel.teamCreate());
     res.render('game', {title: "test", bg: file, team1: playerTeam, team2: enemyTeam, playModel: playModel, pokemon:pokemon});
-	});
- 
-});
+	});});
+
+  router.get('/win',function(req,res){
+    res.render('win')
+  })
+  router.get('/lose',function(req,res){
+    res.render('lose')
+  })
+
 module.exports = router;
