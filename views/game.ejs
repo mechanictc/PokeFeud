@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script>
+		let player = '<%=team1%>';
+		let opponent = '<%=team2%>';
+		let playerHp = <%=pokemon[team1].hp%> * 3
+		let opponentHp = <%=pokemon[team2].hp%> * 3
 
+		function update(damage){
+		    document.getElementById("playerHealth").innerHTML = playerHp;
+		    document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
+			opponentHp -= damage/2;
+		}
+	</script>
     <body>
         <embed src="/music/music.mp3" loop="true" autostart="true" width="0" height="0">
         <center><h1><%= title %></h1></center>
         <center>
+		<div>
+			<h1 id="opponent"><%=team2%></h1>
+			<b id="opponentHealth">Health: <%=pokemon[team2].hp * 3%></b>
+		</div>
         <div style = "position: absolute; z-index: 0; top: 50%; left: 50%">
         </center>
         <center>
-        <img src = '/images/backgrounds/<%= bg %>'; style = "width: 50%; height: 50%; z-index:-2">
+        <img src = "/images/backgrounds/bg-beach.jpg" style = "width: 50%; height: 50%; z-index:-2">
         <img src = "/images/back/<%= team1 %>.png" id = "bsprite" style = "position: absolute; top: 40%; left: 25%; width: 20%; aspect-ratio: 1/1;">
         <img src = "/images/front/<%= team2 %>.png" style = "position: absolute; top: 10%; left: 50%; width: 20%; aspect-ratio: 1/1;">
         </div>
@@ -18,10 +33,10 @@
         <div class = "inter">
             <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>')" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
-            <button class="move" id="move2" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>')" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
-            <button class="move" id="move3" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>')" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
-            <button class="move" id="move4" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>')" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
+            <button class="move" id="move1" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
+            <button class="move" id="move2" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
+            <button class="move" id="move3" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
+            <button class="move" id="move4" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
         </div>
             <!-- <button type = "button" class="switch" id = "swit1" onclick="switched(1, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[1].charAt(0).toUpperCase() + team1[1].slice(1)%></button>
             <button type = "button" class="switch" id = "swit2" onclick="switched(2, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[2].charAt(0).toUpperCase() + team1[2].slice(1)%></button>
@@ -29,6 +44,10 @@
             <button type = "button" class="switch" id = "swit4" onclick="switched(4, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[4].charAt(0).toUpperCase() + team1[4].slice(1)%></button>
             <button type = "button" class="switch" id = "swit5" onclick="switched(5, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[5].charAt(0).toUpperCase() + team1[5].slice(1)%></button>
         </div>--></center>
+		<div>
+			<h1 id="player"><%=team1%></h1>
+			<b id="playerHealth">Health: <%=pokemon[team1].hp * 3%></b>
+		</div>
         <div id = "hpbg1"></div>
         <div id = "hp1"></div>
         <div id = "hpbg2"></div>
