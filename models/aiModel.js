@@ -18,8 +18,7 @@ function teamSwitch(team){
 }
 function chooseMove(aiPokemon, playerPokemon){
 	// ARGUMENTS SHOULD BE CURRENTLY SELECTED POKEMON
-	const aiMoves = moves[aiPokemon].moveset;
-	const playerMoves = moves[playerPokemon].moveset;
+	let aiMoves = moves[aiPokemon].moveset;
 	let strongestMove = aiMoves[0];
 	for(move in aiMoves){
 		if(calcDamage(aiPokemon, playerPokemon, move) > calcDamage(aiPokemon, playerPokemon, strongestMove)){
