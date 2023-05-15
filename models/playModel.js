@@ -9,6 +9,8 @@ const pokemon_type = require('../pokemon_type.json');
 const moves = require('../moves');
 const type_chart = require('../type_chart')
 const debug = require('./debugModel');
+const randomFile = require('select-random-file');
+const aiModel = require('../models/aiModel.js');
 /**
  * Calculates the damage dealt from pokemon1 to pokemon2 including modifiers
  * 
@@ -74,4 +76,114 @@ function isEffective(atk_type, def_type) {
 	}
 	return 1;
 }
-module.exports = {calcDamage, isEffective};
+/**
+ * Speed Check
+ * @param pokemon1-Player's Pokemon
+ * @param pokemon2-Opponent's Pokemon
+ * @return-True if Player is faster, False if Opponent is faster, random if equal
+ */
+function isFaster(pokemon1, pokemon2){
+	if(pokemon1.speed > pokemon2.speed){
+		return true;
+	}else if(pokemon1.speed = pokemon2.speed){
+		return Math.random() < 0.5;
+	}else{
+		return false;
+	}
+}
+/**
+ * Lower HP
+ * @param currentPokemonHp-Current Hp of selected Pokemon
+ * @param incomingDamage-Damage after calculating effectiveness, damage reductions
+ * @return current pokemon health
+ */
+function doDamage(currentPokemonHp, incomingDamage){
+	return currentPokemonHp-incomingDamage;
+}
+/**
+ * Force Player to change Pokemon. Disables moves and changes action text during
+ */
+function forceChange(){
+	var actionText = document.getElementById('action-text');
+	var moveContainer = document.getElementById('button-container');
+	moveContainer.toggle();
+	actionText.innerHTML = "Change Pokemon";
+	document.getElementById("switch-pokemon").onclick = function battleUI() {
+		moveContainer.toggle();
+		actionText.innerHTML = "What will you do?";
+	}
+}
+/**
+ * Does all the turn work, speed checks, damage calcs. Run in game.ejs
+ */
+function turnOrdering(playerPokemon, opponentPokemon){
+	if(isFaster(playerPokemon, opponentPokemon)){
+		return [1,2]
+	}else{
+		return [2,1]
+	}
+}
+/**
+ * Generate array of Pokemon Hps
+ * @param team-array of pokemon
+ * @return-array of hps
+ */
+function generateHp(team){
+	let HpArray = [];
+	for(let i = 0; i < team.length; i++){
+		console.log(pokemon[team[i]].hp);
+		HpArray.push(pokemon[team[i]].hp);
+	}
+	return HpArray;
+}
+function forceChange(){
+    var actionText = document.getElementById('action-text');
+    var moveContainer = document.getElementById('button-container');
+    moveContainer.toggle();
+    actionText.innerHTML = "Change Pokemon";
+    document.getElementById("switch-pokemon").onclick = function battleUI() {
+        moveContainer.toggle();
+        actionText.innerHTML = "What will you do?";
+    }
+}
+function opponentTurn(playerTeam, playerTeamHp, opponentTeam, opponentTeamHp, activeIndex, moveNumber){
+	let playerPokemon = playerTeam[activeIndex]
+	let opponentPokemon = opponentTeam[0]
+    console.log(opponentTeamHp[0], playerTeamHp[activeIndex]);
+    let turnOrder = turnOrdering(playerPokemon, team2[0]);
+    let playerMoves = getMoves(playerPokemon);
+    if(turnOrder[0] == 1){
+        if(doDamage(opponentTeamHp[0], calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
+            opponentTeamHp.shift();
+            aiModel.teamSwitch(opponentTeam);
+        }else{
+            opponentTeamHp[0] -= calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
+            if(doDamage(playerTeamHp[activeIndex], calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])) <= 0){
+                playerTeam.splice(activeIndex, 1);
+                forceChange();
+            }else{
+                playerTeamHp[activeIndex] -= calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon]);
+            }
+        }
+    }else{
+        if(doDamage(playerTeamHp[activeIndex], calcDamage(opponentPokemon, playerPokemon, aiModel.chooseMove[opponentPokemon, playerPokemon])) <= 0){
+            playerTeam.splice(activeIndex, 1);
+            forceChange();
+        }else{
+            playerTeamHp[activeIndex] -= calcDamage(opponentPokemon, playerPokemon, chooseMove[opponentPokemon, playerPokemon]);
+            if(doDamage(opponentTeamHp[0], calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber])) <= 0){
+                opponentTeamHp.shift();
+                aiModel.teamSwitch(opponentTeam);
+            }else{
+                opponentTeamHp[0] -= calcDamage(playerPokemon, opponentPokemon, playerMoves[moveNumber]);
+            }
+        }
+    }
+}
+function getMoves(pokemon, number) {
+	const pokemon_c = pokemon.charAt(0).toUpperCase() + pokemon.slice(1);
+	const move = moves[pokemon_c];
+	return Object.keys(move.moveset)[number];
+}
+
+module.exports = {calcDamage, isEffective, doDamage, isFaster, turnOrdering, generateHp, getMoves, opponentTurn, forceChange};
