@@ -31,7 +31,7 @@ body {
   .bg {
     z-index: -2;
     /* The image used */
-    background-image: url("/images/battlebackground.png");
+    background-image: url("/images/background/bg-beach");
 
   }
   #back{
@@ -44,7 +44,7 @@ body {
   }
   .button-container {
     position: absolute;
-    top: 85%;
+    top: 50%;
     left: 20%;
     background-color: white;
     border-radius: 25px;
@@ -55,13 +55,13 @@ body {
   .move {
     background-color: lightgray;
     color: black;
-    height: 100px;
-    width: 200px;
+    height: 50%;
+    width: 50%;
     border-radius: 25px;
   }
-  #swit{
-    width:13.3333333333%;
-    height: 10%;
+  .switch {
+    width:16%;
+    height: 10px;
   }
   #hpbg1{
     position: absolute;
@@ -94,4 +94,9 @@ body {
     background:green;
     top: 487px;
     left: 747px;
+  }
+  .inter{
+    position: absolute;
+    left: 50%;
+    top: 50%;
   }
