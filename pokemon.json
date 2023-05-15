@@ -119,6 +119,14 @@
         "special_defense": 100,
         "speed": 100
     },
+    "wigglytuff": {
+        "hp": 140,
+        "attack": 70,
+        "defense": 45,
+        "special_attack": 85,
+        "special_defense": 50,
+        "speed": 45
+    },
     "vileplume": {
         "hp": 75,
         "attack": 80,
@@ -126,6 +134,22 @@
         "special_attack": 110,
         "special_defense": 90,
         "speed": 50
+    },
+    "parasect": {
+	    "hp": 60,
+        "attack": 95,
+        "defense": 80,
+        "special_attack": 60,
+        "special_defense": 80,
+        "speed": 30
+    },
+    "venomoth": {
+        "hp": 70,
+        "attack": 65,
+        "defense": 60,
+        "special_attack": 90,
+        "special_defense": 75,
+        "speed": 90
     },
     "dugtrio": {
         "hp": 35,
@@ -150,14 +174,6 @@
         "special_attack": 95,
         "special_defense": 80,
         "speed": 85
-    },
-    "primeape": {
-        "hp": 65,
-        "attack": 105,
-        "defense": 60,
-        "special_attack": 60,
-        "special_defense": 70,
-        "speed": 95
     },
     "arcanine": {
         "hp": 90,
@@ -487,14 +503,6 @@
         "special_defense": 95,
         "speed": 60
     },
-    "ditto": {
-        "hp": 48,
-        "attack": 48,
-        "defense": 48,
-        "special_attack": 48,
-        "special_defense": 48,
-        "speed": 48
-    },
     "vaporeon": {
         "hp": 130,
         "attack": 65,
@@ -506,109 +514,97 @@
     "jolteon": {
         "hp": 65,
         "attack": 65,
-        "special_attack": 110,
         "defense": 60,
+        "special_attack": 110,
         "special-defense": 95,
-        "special": 110,
         "speed": 130
     },
     "flareon": {
         "hp": 65,
         "attack": 130,
         "defense": 60,
-        "special": 95,
-        "speed": 65,
-        "special_attack": 130,
-        "special_defense":110
+        "special_attack": 95,
+        "special_defense":110,
+        "speed": 65
     },
     "omastar": {
         "hp": 70,
         "attack": 60,
         "defense": 125,
-        "special": 115,
-        "speed": 55,
         "special_attack": 115,
-        "special_defense":70
+        "special_defense":70,
+        "speed": 55
     },
     "kabutops": {
         "hp": 60,
         "attack": 115,
         "defense": 105,
-        "special": 65,
-        "speed": 80,
         "special_attack": 65,
-        "special_defense": 70
+        "special_defense": 70,
+        "speed": 80
     },
     "aerodactyl": {
         "hp": 80,
         "attack": 105,
         "defense": 65,
-        "special": 60,
-        "speed": 130,
         "special_attack": 60,
-        "special_defense":75
+        "special_defense":75,
+        "speed": 130
     },
     "snorlax": {
         "hp": 160,
         "attack": 110,
         "defense": 65,
-        "special": 65,
-        "speed": 30,
         "special_attack": 65,
-        "special_defense": 110
+        "special_defense": 110,
+        "speed": 30
     },
     "articuno": {
         "hp": 90,
         "attack": 85,
-        "defense": 100,
-        "special": 125,
-        "speed": 85,
-        "special_attack": 95,
-        "special_defense": 125
+        "defense": 85,
+        "special_attack": 125,
+        "special_defense": 100,
+        "speed": 95
     },
     "zapdos": {
         "hp": 90,
         "attack": 90,
         "defense": 85,
-        "special": 125,
-        "speed": 100,
         "special_attack": 125,
-        "special_defense":90
+        "special_defense":90,
+        "speed": 100
     },
     "moltres": {
         "hp": 90,
         "attack": 100,
         "defense": 90,
-        "special": 125,
-        "speed": 90,
         "special_attack": 125,
-        "special_defense": 85
+        "special_defense": 85,
+        "speed": 90
     },
     "dragonite": {
         "hp": 91,
         "attack": 134,
         "defense": 95,
-        "special": 100,
-        "speed": 80,
         "special_attack": 100,
-        "special_defense":100
+        "special_defense":100,
+        "speed": 80
     },
     "mewtwo": {
         "hp": 106,
         "attack": 110,
         "defense": 90,
-        "special": 154,
-        "speed": 130,
         "special_attack": 154,
-        "special_defense": 154
+        "special_defense": 154,
+        "speed": 130
     },
     "mew": {
         "hp": 100,
         "attack": 100,
         "defense": 100,
-        "special": 100,
-        "speed": 100,
         "special_attack": 100,
-        "special_defense":100
+        "special_defense":100,
+        "speed": 100
     }
 }
