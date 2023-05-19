@@ -4,8 +4,8 @@
 	<script>
 		let player = '<%=team1%>';
 		let opponent = '<%=team2%>';
-		let playerHp = <%=pokemon[team1].hp%> * 3
-		let opponentHp = <%=pokemon[team2].hp%> * 3
+		let playerHp = (<%=pokemon[team1].hp%> * 2) + 110;
+		let opponentHp = (<%=pokemon[team2].hp%> * 2) + 110;
 
 	    function update(damage){
 		    let opponentDamage = Math.floor(Math.random() * 150);
