@@ -29,7 +29,7 @@ router.get('/play', function(req, res) {
 	randomFile(directory, (err, file) => {
 		debug.log("selected file: " + file);
     debug.log(aiModel.teamCreate());
-    res.render('game', {title: "pokefever without the fever and no poke so just '  '", bg: file, team1: playerTeam, team2: enemyTeam, playModel: playModel, pokemon:pokemon, aiModel: aiModel});
+    res.render('game', {title: "pokefever without the fever and no poke so just '  '", bg: file, team1: playerTeam, team2: enemyTeam, playModel: playModel, pokemon:pokemon, aiModel: aiModel, moveset:moves});
 	});
  
 });

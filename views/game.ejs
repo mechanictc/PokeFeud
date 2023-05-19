@@ -2,35 +2,185 @@
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script>
+        let moveset = JSON.parse(<%=moveset%>);
 		let player = '<%=team1%>';
 		let opponent = '<%=team2%>';
-		let playerHp = <%=pokemon[team1].hp%> * 3
-		let opponentHp = <%=pokemon[team2].hp%> * 3
-
-	    function update(damage){
-		    let opponentDamage = Math.floor(Math.random() * 150);
-			
-			document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage;
-			document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
-			opponentHp -= damage/2;
-
-            if(document.getElementById("playerHealth").innerHTML <= 0){
-                window.location = '../lose'
+		let playerHp = (<%=pokemon[team1].hp%>*2+30)+110;
+		let opponentHp = (<%=pokemon[team2].hp%>*2+30)+110;
+        $(document).ready(function(){
+            let move1 = document.getElementById("move1");
+            move1.addEventListener("click", update(calcDamage(player, opponent, getMoves(player, 0))));
+            move1.innerHTML = getMoves(player, 0);
+            let move2 = document.getElementById("move2");
+            move2.addEventListener("click", update(calcDamage(player, opponent, getMoves(player, 1))));
+            move1.innerHTML = getMoves(player, 1);
+            let move3 = document.getElementById("move3");
+            move3.addEventListener("click", update(calcDamage(player, opponent, getMoves(player, 2))));
+            move1.innerHTML = getMoves(player, 2);
+            let move4 = document.getElementById("move4");
+            move4.addEventListener("click", update(calcDamage(player, opponent, getMoves(player, 3))));
+            move1.innerHTML = getMoves(player, 3);
+            document.getElementById("playerHealth").innerHTML = playerHp;
+            document.getElementById("opponentHealth").innerHTML = opponentHp;
+            document.getElementById("player").innerHTML = "Health: "+player;
+            document.getElementById("opponent").innerHTML = "Health: "+opponent;
+        })
+        function calcDamage(pokemon1, pokemon2, move) {
+            try {
+                const ATK_POKEMON_INFO = pokemon[pokemon1];
+                const DEF_POKEMON_INFO = pokemon[pokemon2];
+                const MOVE_INFO = moves[pokemon1.charAt(0).toUpperCase() + pokemon1.slice(1)].moveset[move];
+                const CATEGORY = MOVE_INFO.category == "Special" ? true : false;
+                const ATK = (CATEGORY == true ? ATK_POKEMON_INFO.special_attack : ATK_POKEMON_INFO.attack);
+                const DEF =  (CATEGORY == true ? DEF_POKEMON_INFO.special_defense : DEF_POKEMON_INFO.defense);
+                debug.log("==========\natk: " + ATK + "\ndef: " + DEF);
+                const LEVEL = 100;
+                const CRITICAL = Math.floor(Math.random() * 255) < ATK_POKEMON_INFO.speed / 2 ? ((2 * LEVEL) + 5) / (LEVEL + 5) : 1;
+                debug.log(CRITICAL == 1 ? "no crit" : "CRITICAL HIT");
+                const RANDOM = Math.floor(Math.random() * 39 + 217) / 255;
+                const MOVE_TYPE = MOVE_INFO.type.charAt(0).toLowerCase() + MOVE_INFO.type.slice(1);
+                const DEF_POKEMON_TYPE_1 = pokemon_type[pokemon2][0];
+                const DEF_POKEMON_TYPE_2 = pokemon_type[pokemon2][1];
+                const EFFECTIVE_1 = isEffective(MOVE_TYPE, DEF_POKEMON_TYPE_1);
+                debug.log("type effective vs 1: " + EFFECTIVE_1);
+                let EFFECTIVE_2;
+                if (DEF_POKEMON_TYPE_2 !== "undefined")
+                    EFFECTIVE_2 = isEffective(MOVE_TYPE, DEF_POKEMON_TYPE_2);
+                debug.log("type effective vs 2: " + EFFECTIVE_2);
+                const STAB_1 = (pokemon_type[pokemon1][0] == MOVE_TYPE ? 1.5 : 1);
+                let STAB_2;
+                if (pokemon_type[pokemon1][1] !== "undefined")
+                    STAB_2 = (pokemon_type[pokemon1][1] == MOVE_TYPE ? 1.5 : 1)
+                let damage = ((((2 * LEVEL * CRITICAL) / 5 + 2) * MOVE_INFO.power * (ATK/DEF)) / 50) + 2;
+                damage *= RANDOM * EFFECTIVE_1 * EFFECTIVE_2 * STAB_1 * STAB_2;
+                damage = Math.floor(damage);
+                debug.log("damage: " + damage + "\n==========");
+                return damage;
             }
-            else if(document.getElementById("opponentHealth").innerHTML <= 0){
-                window.location = '../win'
+            catch (err) {
+                debug.log(err);
             }
-			playerHp -= opponentDamage;
-
-		}
-			</script>
+        }
+        /**
+        * @param  atk_type  a string of the attacking pokemon type
+        * @param  def_type  a string of the defending pokemon type; pokemon being attacked
+        * @return           type effectiveness of the two types in float form (1, 2, 0.5)
+        */
+        function isEffective(atk_type, def_type) {
+            for (let i = 0; i < type_chart[atk_type].effective.length; i++) {
+                if (type_chart[atk_type].effective[i] == def_type)
+                    return 2;
+            }
+            for (let i = 0; i < type_chart[atk_type].resist.length; i++) {
+                if (type_chart[atk_type].resist[i] == def_type)
+                    return 0.5;
+            }
+            for (let i = 0; i < type_chart[atk_type].immune.length; i++) {
+                    return 0;
+            }
+            return 1;
+        }
+        /**
+         * Speed Check
+         * @param pokemon1-Player's Pokemon
+         * @param pokemon2-Opponent's Pokemon
+         * @return-True if Player is faster, False if Opponent is faster, random if equal
+         */
+        function isFaster(pokemon1, pokemon2){
+            if(pokemon1.speed > pokemon2.speed){
+                return true;
+            }else if(pokemon1.speed = pokemon2.speed){
+                return Math.random() < 0.5;
+            }else{
+                return false;
+            }
+        }
+        /**
+         * Force Player to change Pokemon. Disables moves and changes action text during
+         */
+        function forceChange(){
+            var actionText = document.getElementById('action-text');
+            var moveContainer = document.getElementById('button-container');
+            moveContainer.toggle();
+            actionText.innerHTML = "Change Pokemon";
+            document.getElementById("switch-pokemon").onclick = function battleUI() {
+                moveContainer.toggle();
+                actionText.innerHTML = "What will you do?";
+            }
+        }
+        /**
+         * Generate array of Pokemon Hps
+         * @param team-array of pokemon
+         * @return-array of hps
+         */
+        function generateHp(team){
+            let HpArray = [];
+            for(let i = 0; i < team.length; i++){
+                console.log(pokemon[team[i]].hp);
+                HpArray.push(pokemon[team[i]].hp);
+            }
+            return HpArray;
+        }
+        function getMoves(pokemon, number) {
+            const pokemon_c = pokemon.charAt(0) + pokemon.slice(1);
+            const move = moveset[pokemon_c];
+            console.log(moveset+"109");
+            console.log(move+"110");
+            return Object.keys(move.moveset)[number];
+        }
+        function chooseMove(){
+            // ARGUMENTS SHOULD BE CURRENTLY SELECTED POKEMON
+            let aiMoves = moveset[opponent].moveset;
+            let strongestMove = aiMoves[0];
+            for(move in aiMoves){
+                if(calcDamage(opponent, player, move) > calcDamage(opponent, player, strongestMove)){
+                    strongestMove = move;
+                }
+            }
+            return strongestMove;
+        }
+        function executeTurn(damage){
+            console.log(document.getElementById("playerHealth").innerHTML+"125")
+            let opponentDamage = 0
+            if(isFaster(player, opponent)){
+                document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
+                opponentHp -= damage/2;
+                if(document.getElementById("opponentHealth").innerHTML <= 0){
+                    window.location = '../win'
+                }else{
+                    document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage;
+                    playerHp -= opponentDamage;
+                    if(document.getElementById("playerHealth").innerHTML <= 0){
+                        window.location = '../lose'
+                    }
+                }
+            }else{
+                document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage;
+                playerHp -= opponentDamage
+                if(document.getElementById("playerHealth").innerHTML <= 0){
+                    window.location = '../lose'
+                }else{
+                    document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
+                    opponentHp -= damage/2;
+                    if(document.getElementById("opponentHealth").innerHTML <= 0){
+                        window.location = '../win'
+                    }
+                }
+            }
+        }
+        function update(damage){
+            console.log("meow")+"154";
+            executeTurn(damage)
+            document.getElementById('action-text').innerHTML = damage;
+        }
+</script>
     <body>
         <embed src="/music/music.mp3" loop="true" autostart="true" width="0" height="0">
         <center><h1><%= title %></h1></center>
         <center>
 		<div>
-			<h1 id="opponent"><%=team2%></h1>
-			<b id="opponentHealth">Health: <%=pokemon[team2].hp * 3%></b>
+			<h1 id="opponent"></h1>
+			<b id="opponentHealth"></b>
 		</div>
         <div style = "position: absolute; z-index: 0; top: 50%; left: 50%">
         </center>
@@ -44,10 +194,10 @@
         <div class = "inter">
             <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
-            <button class="move" id="move2" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
-            <button class="move" id="move3" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
-            <button class="move" id="move4" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
+            <button class="move" id="move1" style = " width:10%; aspect-ratio: 5/3;"></button>
+            <button class="move" id="move2" style = " width:10%; aspect-ratio: 5/3;"></button>
+            <button class="move" id="move3" style = " width:10%; aspect-ratio: 5/3;"></button>
+            <button class="move" id="move4" style = " width:10%; aspect-ratio: 5/3;"></button>
         </div>
             <!-- <button type = "button" class="switch" id = "swit1" onclick="switched(1, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[1].charAt(0).toUpperCase() + team1[1].slice(1)%></button>
             <button type = "button" class="switch" id = "swit2" onclick="switched(2, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[2].charAt(0).toUpperCase() + team1[2].slice(1)%></button>
@@ -56,8 +206,8 @@
             <button type = "button" class="switch" id = "swit5" onclick="switched(5, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[5].charAt(0).toUpperCase() + team1[5].slice(1)%></button>
         </div>--></center>
 		<div style = "bottom: 50%;">
-			<h1 id="player"><%=team1%></h1>
-			<b id="playerHealth">Health: <%=pokemon[team1].hp * 3%></b>
+			<h1 id="player"></h1>
+			<b id="playerHealth"></b>
 		</div>
         <div id = "hpbg1"></div>
         <div id = "hp1"></div>

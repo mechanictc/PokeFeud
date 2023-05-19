@@ -239,7 +239,7 @@
       "Drill Run": {"type": "Ground", "category": "Physical", "power": 80, "accuracy": 95}
     }
   },
-  "Slowbro": {
+  "slowbro": {
     "moveset": {
       "Scald": {"type": "Water", "category": "Special", "power": 80, "accuracy": 100},
       "Psychic": {"type": "Psychic", "category": "Special", "power": 90, "accuracy": 100},
@@ -247,7 +247,7 @@
       "Slack Off": {"type": "Normal", "category": "Status", "power": 0, "accuracy": 0}
     }
   },
-  "Magneton": {
+  "magneton": {
     "moveset": {
       "Thunderbolt": {"type": "Electric", "category": "Special", "power": 90, "accuracy": 100},
       "Flash Cannon": {"type": "Steel", "category": "Special", "power": 80, "accuracy": 100},
@@ -255,7 +255,7 @@
       "Magnet Rise": {"type": "Electric", "category": "Status", "power": 0, "accuracy": 0}
     }
   },
-  "Farfetch'd": {
+  "farfetch'd": {
     "moveset": {
       "Brave Bird": {"type": "Flying", "category": "Physical", "power": 120, "accuracy": 100},
       "Leaf Blade": {"type": "Grass", "category": "Physical", "power": 90, "accuracy": 100},
@@ -263,7 +263,7 @@
       "Quick Attack": {"type": "Normal", "category": "Physical", "power": 40, "accuracy": 100}
     }
   },
-  "Dodrio": {
+  "dodrio": {
     "moveset": {
       "Drill Peck": {"type": "Flying", "category": "Physical", "power": 80, "accuracy": 100},
       "Jump Kick": {"type": "Fighting", "category": "Physical", "power": 100, "accuracy": 95},
@@ -271,7 +271,7 @@
       "Return": {"type": "Normal", "category": "Physical", "power": 0, "accuracy": 100}
     }
   },
-  "Dewgong": {
+  "dewgong": {
     "moveset": {
       "Surf": {"type": "Water", "Category": "Special", "power": 90, "Accuracy": 100},
       "Ice Beam": {"type": "Ice", "Category": "Special", "power": 95, "Accuracy": 100},
@@ -279,7 +279,7 @@
       "Protect": {"type": "Normal", "Category": "Status", "power": null, "Accuracy": null}
     }
   },
-  "Muk": {
+  "muk": {
     "moveset": {
       "Gunk Shot": {"type": "Poison", "Category": "Physical", "power": 120, "Accuracy": 80},
       "Curse": {"type": "Ghost", "Category": "Status", "power": null, "Accuracy": null},
@@ -287,7 +287,7 @@
       "Ice Punch": {"type": "Ice", "Category": "Physical", "power": 75, "Accuracy": 100}
     }
   },
-  "Cloyster": {
+  "cloyster": {
     "moveset": {
       "Surf": {"type": "Water", "category": "Special", "power": 90, "accuracy": 100},
       "Ice Shard": {"type": "Ice", "category": "Physical", "power": 40, "accuracy": 100},
@@ -303,38 +303,38 @@
       "Destiny Bond": {"type": "Ghost", "category": "Status", "power": 0, "accuracy": 0}
     }
   },
-    "onix": {
-      "moveset": {
-        "Toxic": {"type": "Poison", "category": "Status", "power": 0, "accuracy": 90},
-        "Bind": {"type": "Normal", "Category": "Physical", "power": 15, "Accuracy": 75},
-        "Earthquake": {"type": "Ground", "category": "Physical", "power": 100, "accuracy": 100},
-        "Explosion": {"type": "Normal", "category": "Physical", "power": 250, "accuracy": 100}
-      }
-    },
-    "hypno": {
-      "moveset": {
-        "Psychic": {"type": "Psychic", "Category": "Special", "power": 90, "Accuracy": 100},
-        "Thunder Wave": {"type": "Electric", "Category": "Status", "power": null, "Accuracy": 90},
-        "Calm Mind": {"type": "Psychic", "Category": "Status", "power": null, "Accuracy": null},
-        "Seismic Toss": {"type": "Fighting", "Category": "Physical", "power": null, "Accuracy": 100}
-      }
-    },
-    "kingler": {
-      "moveset": {
-        "Crabhammer": {"type": "Water", "category": "Physical", "power": 100, "accuracy": 90},
-        "Rock Slide": {"type": "Rock", "category": "Physical", "power": 75, "accuracy": 90},
-        "Swords Dance": {"type": "Normal", "category": "Status", "power": 0, "accuracy": 0},
-        "Agility": {"type": "Psychic", "category": "Status", "power": 0, "accuracy": 0}
-      }
-    },
-    "electrode": {
-      "moveset": {
-        "Thunderbolt": {"type": "Electric", "category": "Special", "power": 90, "accuracy": 100},
-        "Thunder Wave": {"type": "Electric", "category": "Status", "power": 0, "accuracy": 0},
-        "Explosion": {"type": "Normal", "category": "Physical", "power": 250, "accuracy": 100},
-        "Reflect": {"type": "Psychic", "category": "Status", "power": 0, "accuracy": 0}
-      }
-    },
+  "onix": {
+    "moveset": {
+      "Toxic": {"type": "Poison", "category": "Status", "power": 0, "accuracy": 90},
+      "Bind": {"type": "Normal", "Category": "Physical", "power": 15, "Accuracy": 75},
+      "Earthquake": {"type": "Ground", "category": "Physical", "power": 100, "accuracy": 100},
+      "Explosion": {"type": "Normal", "category": "Physical", "power": 250, "accuracy": 100}
+    }
+  },
+  "hypno": {
+    "moveset": {
+      "Psychic": {"type": "Psychic", "Category": "Special", "power": 90, "Accuracy": 100},
+      "Thunder Wave": {"type": "Electric", "Category": "Status", "power": null, "Accuracy": 90},
+      "Calm Mind": {"type": "Psychic", "Category": "Status", "power": null, "Accuracy": null},
+      "Seismic Toss": {"type": "Fighting", "Category": "Physical", "power": null, "Accuracy": 100}
+    }
+  },
+  "kingler": {
+    "moveset": {
+      "Crabhammer": {"type": "Water", "category": "Physical", "power": 100, "accuracy": 90},
+      "Rock Slide": {"type": "Rock", "category": "Physical", "power": 75, "accuracy": 90},
+      "Swords Dance": {"type": "Normal", "category": "Status", "power": 0, "accuracy": 0},
+      "Agility": {"type": "Psychic", "category": "Status", "power": 0, "accuracy": 0}
+    }
+  },
+  "electrode": {
+    "moveset": {
+      "Thunderbolt": {"type": "Electric", "category": "Special", "power": 90, "accuracy": 100},
+      "Thunder Wave": {"type": "Electric", "category": "Status", "power": 0, "accuracy": 0},
+      "Explosion": {"type": "Normal", "category": "Physical", "power": 250, "accuracy": 100},
+      "Reflect": {"type": "Psychic", "category": "Status", "power": 0, "accuracy": 0}
+    }
+  },
   "exeggutor": {
     "moveset": {
       "Psychic": {"type": "Psychic", "category": "Special", "power": 90, "accuracy": 100},
