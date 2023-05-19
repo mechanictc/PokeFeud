@@ -3,13 +3,13 @@ const moves = require('../moves');
 
 function teamCreate() {
 	const names = Object.keys(pokemon);
-	let finalTeam = [];
-	for(let i = 0; i < 6; i++) {
-		let randomSelect = Math.floor(Math.random() * 74);
-		if (!finalTeam.includes(names[randomSelect]))
-			finalTeam.push(names[randomSelect]);
-	}
-	return finalTeam;
+	// let finalTeam = [];
+	// for(let i = 0; i < 6; i++) {
+	// 	let randomSelect = Math.floor(Math.random() * 74);
+	// 	if (!finalTeam.includes(names[randomSelect]))
+	// 		finalTeam.push(names[randomSelect]);
+	// }
+	return names[Math.floor(Math.random() * 74)];
 }
 
 function teamSwitch(team){
@@ -18,8 +18,7 @@ function teamSwitch(team){
 }
 function chooseMove(aiPokemon, playerPokemon){
 	// ARGUMENTS SHOULD BE CURRENTLY SELECTED POKEMON
-	const aiMoves = moves[aiPokemon].moveset;
-	const playerMoves = moves[playerPokemon].moveset;
+	let aiMoves = moves[aiPokemon].moveset;
 	let strongestMove = aiMoves[0];
 	for(move in aiMoves){
 		if(calcDamage(aiPokemon, playerPokemon, move) > calcDamage(aiPokemon, playerPokemon, strongestMove)){

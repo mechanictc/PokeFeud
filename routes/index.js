@@ -29,8 +29,17 @@ router.get('/play', function(req, res) {
 	randomFile(directory, (err, file) => {
 		debug.log("selected file: " + file);
     debug.log(aiModel.teamCreate());
-    res.render('game', {title: "test", bg: file, team1: playerTeam, team2: enemyTeam, aiModel: aiModel, playModel: playModel});
+    res.render('game', {title: "pokefever without the fever and no poke so just '  '", bg: file, team1: playerTeam, team2: enemyTeam, playModel: playModel, pokemon:pokemon, aiModel: aiModel, moveset:moves});
 	});
  
 });
+
+router.get('/lose', function(req, res) {
+	res.render('lose')
+});
+
+router.get('/win', function(req, res) {
+	res.render('win')
+});
+
 module.exports = router;
