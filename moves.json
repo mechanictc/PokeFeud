@@ -220,7 +220,7 @@
     "moveset": {
       "Earthquake": {"type": "Ground", "category": "Physical", "power": 100, "accuracy": 100},
       "Rock Slide": {"type": "Rock", "category": "Physical", "power": 75, "accuracy": 100},
-      "Explosion": {"type": "Fighting", "category": "Physical", "power": 250, "accuracy": 100},
+      "Explosion": {"type": "Fighting", "category": "Physical", "power": 120, "accuracy": 100},
       "Stone Edge": {"type": "Rock", "category": "Physical", "power": 100, "accuracy": 100}
     }
   },
@@ -301,7 +301,7 @@
         "Poison Jab": {"type": "Poison", "category": "Physical", "power": 80, "accuracy": 100},
         "Bind": {"type": "Fighting", "Category": "Physical", "power": 15, "Accuracy": 100},
         "Earthquake": {"type": "Ground", "category": "Physical", "power": 100, "accuracy": 100},
-        "Explosion": {"type": "Fighting", "category": "Physical", "power": 250, "accuracy": 100}
+        "Explosion": {"type": "Fighting", "category": "Physical", "power": 120, "accuracy": 100}
       }
     },
     "hypno": {
@@ -324,7 +324,7 @@
       "moveset": {
         "Thunderbolt": {"type": "Electric", "category": "Special", "power": 90, "accuracy": 100},
         "Thunder Punch": {"type": "Electric", "category": "Physical", "power": 75, "accuracy": 100},
-        "Explosion": {"type": "Fighting", "category": "Physical", "power": 250, "accuracy": 100},
+        "Explosion": {"type": "Fighting", "category": "Physical", "power": 120, "accuracy": 100},
         "Body Slam": {"type": "Fighting", "category": "Physical", "power": 85, "accuracy": 100}
       }
     },
@@ -365,7 +365,7 @@
       "Fire Blast": {"type": "Fire", "category": "Special", "power": 110, "accuracy": 100},
       "Thunderbolt": {"type": "Electric", "category": "Special", "power": 90, "accuracy": 100},
       "Hyper Beam": {"type": "Fighting", "category": "Special", "power": 150, "accuracy": 100},
-      "Explosion": {"type": "Fighting", "category": "Physical", "power": 250, "accuracy": 100}
+      "Explosion": {"type": "Fighting", "category": "Physical", "power": 1200, "accuracy": 100}
     }
   },
   "rhydon": {
@@ -539,7 +539,7 @@
   "snorlax": {
     "moveset": {
       "Body Slam": {"type": "Fighting", "category": "Physical", "power": 85, "accuracy": 100},
-      "Explosion": {"type": "Fighting", "category": "Physical", "power": 250, "accuracy": 100},
+      "Explosion": {"type": "Fighting", "category": "Physical", "power": 120, "accuracy": 100},
       "Hyper Beam": {"type": "Fighting", "category": "Special", "power": 150, "accuracy": 100},
       "Earthquake": {"type": "Ground", "category": "Physical", "power": 100, "accuracy": 100}
     }
