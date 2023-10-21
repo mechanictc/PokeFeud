@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<<<<<<< HEAD
     <style>/* The Modal (background) */
         .modal {
           display: none; /* Hidden by default */
@@ -51,39 +50,10 @@
   cursor: pointer;
 }
 </style>
-=======
-	<script>
-		let player = '<%=team1%>';
-		let opponent = '<%=team2%>';
-		let playerHp = (<%=pokemon[team1].hp%> * 2) + 110;
-		let opponentHp = (<%=pokemon[team2].hp%> * 2) + 110;
-
-	    function update(damage){
-            document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
-			opponentHp -= damage/2;
-            window.alert("You did " + damage/2 + " damage!");
-            if(document.getElementById("opponentHealth").innerHTML <= 0){
-                window.location = '../win'
-            }
-		    let opponentDamage = Math.floor(Math.random() * 150);
-            window.alert("Opponent did " + opponentDamage + " damage!");
-			document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage;
-            if(document.getElementById("playerHealth").innerHTML <= 0){
-                window.location = '../lose'
-            }
-			playerHp -= opponentDamage;
-
-		}
-        function playsound(){
-            var audio = new Audio('/music/move.mp3');
-            audio.play();
-        }
-			</script>
->>>>>>> parent of 431891d (modal?)
     <body>
         <embed src="/music/music.mp3" loop="true" autostart="true" width="0" height="0">
-        <center><h1 style="margin-top: 0;"><%= title %></h1></center>
-		<div style = "  position: relative; left: 65%; color: red">
+        <center><h1><%= title %></h1></center>
+		<div style="position: absolute; left: 75%; color: red">
 			<h1 id="opponent"><%=team2%></h1>
 			<b id="opponentHealth">Health: <%=pokemon[team2].hp * 3%></b>
 		</div>
@@ -92,29 +62,22 @@
         </center>
         <center>
         <img src = "/images/backgrounds/bg-beach.jpg" style = "width: 50%; height: 50%; z-index:-2">
-        <img src = "/images/back/<%= team1 %>.png" id = "bsprite" style = "position: absolute; top: 50%; left: 25%; width: 20%; aspect-ratio: 1/1;">
-        <img src = "/images/front/<%= team2 %>.png" style = "position: absolute; top: 17%; left: 55%; width: 20%; aspect-ratio: 1/1;">
+        <img src = "/images/back/<%= team1 %>.png" id = "bsprite" style = "position: absolute; top: 42%; left: 25%; width: 20%; aspect-ratio: 1/1;">
+        <img src = "/images/front/<%= team2 %>.png" style = "position: absolute; top: 10%; left: 55%; width: 20%; aspect-ratio: 1/1;">
         </div>
         </center>
         <center>
         <div class = "inter">
             <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
-<<<<<<< HEAD
             <button class="move" id="move1" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>, 1); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
             <button class="move" id="move2" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>, 2); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
             <button class="move" id="move3" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>, 3); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
             <button class="move" id="move4" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>,4 ); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
         </div>
-=======
-            <button class="move" id="move1" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
-            <button class="move" id="move2" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
-            <button class="move" id="move3" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
-            <button class="move" id="move4" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
->>>>>>> parent of 431891d (modal?)
         </div>
-</center>
-		<div style = "position: absolute; bottom: 25%; left: 15%; color: blue;">
+        </center>
+		<div style = "position: absolute; bottom: 32%; left: 13%; color: blue;">
 			<h1 id="player"><%=team1%></h1>
 			<b id="playerHealth">Health: <%=pokemon[team1].hp * 3%></b>
 		</div>
@@ -147,9 +110,10 @@
 <script>
     let player = '<%=team1%>';
     let opponent = '<%=team2%>';
-<<<<<<< Updated upstream
     let thing = document.getElementsByClassName("close")[0];
     let modal = document.getElementById("myModal");
+    let thingopp = document.getElementsByClassName("closeopp")[0];
+    let modalopp = document.getElementById("myModalopp");
 
     let playerHp = (<%=pokemon[team1].hp%> * 2) * 2;
     let opponentHp = (<%=pokemon[team2].hp%> * 2) * 2;
@@ -171,46 +135,17 @@
         if(document.getElementById("playerHealth").innerHTML <= 0){
             window.location = '../lose'
         }
-        playerHp -= Math.ceil(opponentDamage);
-=======
-    let playerHp = (<%=pokemon[team1].hp%> * 2) + 110;
-    let opponentHp = (<%=pokemon[team2].hp%> * 2) + 110;
-    let thing = document.getElementsByClassName("close")[0];
-    let thingopp = document.getElementsByClassName("closeopp")[0];
-    let modal = document.getElementById("myModal");
-    let modalopp = document.getElementById("myModalopp");
-
-    function update(damage){
-
-        document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
-        opponentHp -= damage/2;
-        // window.alert("You did " + damage/2 + " damage!");
         if(document.getElementById("opponentHealth").innerHTML <= 0){
             window.location = '../win'
         }
-        let opponentDamage = Math.floor(Math.random() * 150);
-        displayopp(opponentDamage)
-
-        document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage;
-        if(document.getElementById("playerHealth").innerHTML <= 0){
-            window.location = '../lose'
-        }
-        playerHp -= opponentDamage;
->>>>>>> Stashed changes
+        displayopp(opponentDamage);
+        playerHp -= Math.ceil(opponentDamage);
 
     }
     function playsound(){
         var audio = new Audio('/music/move.mp3');
         audio.play();
     }
-<<<<<<< Updated upstream
-    function display(){
-        console.log(modal)
-        modal.style.display = "block"
-    }
-    thing.onclick = function(){
-        modal.style.display = "none"
-=======
     function displayplayer(dam, num){
         console.log(modal)
         mod.innerHTML = "You used " + document.getElementById("move" + num).innerHTML + "!\n it did" + dam + " damage!"
@@ -226,7 +161,6 @@
     }    
     thingopp.onclick = function(){
         modalopp.style.display = "none"
->>>>>>> Stashed changes
     }
         </script>
 
