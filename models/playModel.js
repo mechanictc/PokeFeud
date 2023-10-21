@@ -25,7 +25,7 @@ function calcDamage(pokemon1, pokemon2, move) {
 	try {
 		const ATK_POKEMON_INFO = pokemon[pokemon1];
 		const DEF_POKEMON_INFO = pokemon[pokemon2];
-		const MOVE_INFO = moves[pokemon1.charAt(0).toUpperCase() + pokemon1.slice(1)].moveset[move];
+		const MOVE_INFO = moves[pokemon1].moveset[move];
 		const CATEGORY = MOVE_INFO.category == "Special" ? true : false;
 		const ATK = (CATEGORY == true ? ATK_POKEMON_INFO.special_attack : ATK_POKEMON_INFO.attack);
 		const DEF =  (CATEGORY == true ? DEF_POKEMON_INFO.special_defense : DEF_POKEMON_INFO.defense);
@@ -181,8 +181,7 @@ function opponentTurn(playerTeam, playerTeamHp, opponentTeam, opponentTeamHp, ac
     }
 }
 function getMoves(pokemon, number) {
-	const pokemon_c = pokemon.charAt(0).toUpperCase() + pokemon.slice(1);
-	const move = moves[pokemon_c];
+	const move = moves[pokemon];
 	return Object.keys(move.moveset)[number];
 }
 
