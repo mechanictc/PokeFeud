@@ -17,14 +17,14 @@
 	    function update(damage){
 		    let opponentDamage = Math.floor(Math.random() * 150);
 			
-			document.getElementById("playerHealth").innerHTML = ceil(playerHp - opponentDamage);
-			document.getElementById("opponentHealth").innerHTML = ceil(opponentHp-(damage/2));
-			opponentHp -= ceil(damage/2);
+			document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage;
+			document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
+			opponentHp -= damage/2;
 
             if(document.getElementById("playerHealth").innerHTML <= 0){
                 window.location = '../lose'
             }
-			playerHp -= ceil(opponentDamage);
+			playerHp -= opponentDamage;
 
 		}
         function playsound(){
