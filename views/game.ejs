@@ -117,8 +117,8 @@
     let modalopp = document.getElementById("myModalopp");
     let playerHp = (<%=pokemon[team1].hp%> * 5)  ;
     let opponentHp = (<%=pokemon[team2].hp%> * 5);
-    document.getElementById("playerHealth").innerHTML = playerHp;
-    document.getElementById("opponentHealth").innerHTML = opponentHp;
+    document.getElementById("playerHealth").innerHTML = playerHp + " / " + playerHp;
+    document.getElementById("opponentHealth").innerHTML = opponentHp + " / " + opponentHp;
         //new
     //    let playerDamage = ((<%=pokemon[team1].attack%>)+(<%=pokemon[team1].special_attack%>))/2;
        // let opponentDamage = Math.sqrt((<%=pokemon[team2].attack%>)*(<%=pokemon[team2].special_attack%>))*1.1;
@@ -126,17 +126,17 @@
        let pdef = ((<%=pokemon[team1].defense%>)+(<%=pokemon[team1].special_defense%>))/2;
        let odef = ((<%=pokemon[team2].defense%>)+(<%=pokemon[team2].special_defense%>))/2;
     function updateOpponent(damage){
-        document.getElementById("opponentHealth").innerHTML = Math.ceil(document.getElementById("opponentHealth").innerHTML-damage/2);
-        document.getElementById("hp1").style.width = document.getElementById("opponentHealth").innerHTML/opponentHp *250 + "px";
-        if(document.getElementById("opponentHealth").innerHTML <= 0){
+        document.getElementById("opponentHealth").innerHTML = Math.ceil(document.getElementById("opponentHealth").innerHTML.split("/")[0]-damage/2)+ " / " + opponentHp;
+        document.getElementById("hp1").style.width = document.getElementById("opponentHealth").innerHTML.split("/")[0]/opponentHp *250 + "px";
+        if(document.getElementById("opponentHealth").innerHTML.split("/")[0] <= 0){
             window.location = '../win'
         }
     }
     function updatePlayer(damage){
-        document.getElementById("playerHealth").innerHTML = Math.ceil( document.getElementById("playerHealth").innerHTML-damage);
-        document.getElementById("hp2").style.width = document.getElementById("playerHealth").innerHTML/playerHp *250 + "px";
+        document.getElementById("playerHealth").innerHTML = Math.ceil( document.getElementById("playerHealth").innerHTML.split("/")[0]-damage) +" / " + playerHp ;
+        document.getElementById("hp2").style.width = document.getElementById("playerHealth").innerHTML.split("/")[0]/playerHp *250 + "px";
         displayopp(damage);
-        if(document.getElementById("playerHealth").innerHTML <= 0){
+        if(document.getElementById("playerHealth").innerHTML.split("/")[0] <= 0){
             window.location = '../lose'
         }
     }
@@ -180,9 +180,11 @@
         elem2.style.top = posY2 + 'px';
         clearInterval(id);
         clearInterval(id2);
+        elem.style.zIndex = 1000;
+        elem2.style.zIndex = 100;
         id = setInterval(frame, 10);
         function frame() {
-            if (parseInt(elem.style.left.substring(0,3))>=800) {
+            if (parseInt(elem.style.left.substring(0,3))>=770) {
                 playsound()
                 clearInterval(id);
                 id2 = setInterval(frameBack, 10);
@@ -222,12 +224,14 @@
         let opponentDamage =Math.floor( (Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.85) -20)))*(Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.85) -20)))/pdef);
         elem2.style.left = posX2 + 'px';
         elem2.style.top = posY2 + 'px';
+        elem.style.zIndex = 100;
+        elem2.style.zIndex = 1000;
         clearInterval(id);
         clearInterval(id2);
         displayopp(opponentDamage);
         id = setInterval(frame2, 10);
         function frame2() {
-            if (parseInt(elem2.style.left.substring(0,3))<=304) {
+            if (parseInt(elem2.style.left.substring(0,3))<=334) {
                 playsound()
                 clearInterval(id);
                 id2 = setInterval(frameBack2, 10);
