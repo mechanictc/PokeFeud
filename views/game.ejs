@@ -94,7 +94,7 @@
       <!-- Modal content -->
       <div class="modal-content">
         <button class="close" id = "close">CLOSE</button>
-        <p id = "mod"></p>
+        <p id = "mod" style = "color: blue"></p>
       </div>
     
     </div>
@@ -103,7 +103,7 @@
         <!-- Modal content -->
         <div class="modal-content">
           <button class="closeopp" id = closeopp>CLOSE</button>
-          <p id = "modopp"></p>
+          <p id = "modopp" style = "color: red"></p>
         </div>
       
       </div>
@@ -125,7 +125,7 @@
         document.getElementById("playerHealth").innerHTML = Math.ceil(playerHp - opponentDamage);
         document.getElementById("opponentHealth").innerHTML = Math.ceil(opponentHp-damage/2);
         opponentHp -= Math.ceil(damage/2);
-
+        playerHp -= Math.ceil(opponentDamage);
         if(document.getElementById("playerHealth").innerHTML <= 0){
             window.location = '../lose'
         }
@@ -133,7 +133,6 @@
             window.location = '../win'
         }
         displayopp(opponentDamage);
-        playerHp -= Math.ceil(opponentDamage);
 
     }
     function playsound(){
