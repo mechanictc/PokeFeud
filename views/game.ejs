@@ -116,8 +116,17 @@
     console.log(modal)
     let playerHp = (<%=pokemon[team1].hp%> * 2) * 2;
     let opponentHp = (<%=pokemon[team2].hp%> * 2) * 2;
+        //new
+    //    let playerDamage = ((<%=pokemon[team1].attack%>)+(<%=pokemon[team1].special_attack%>))/2;
+       // let opponentDamage = Math.sqrt((<%=pokemon[team2].attack%>)*(<%=pokemon[team2].special_attack%>))*1.1;
+       // console.log("player damage is:"+playerDamage);
+       let pdef = ((<%=pokemon[team1].defense%>)+(<%=pokemon[team1].special_defense%>))/2;
+       let odef = ((<%=pokemon[team2].defense%>)+(<%=pokemon[team2].special_defense%>))/2;
+
+
+
     function update(damage){
-    let opponentDamage = Math.ceil(((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.85) -20)
+    let opponentDamage =Math.floor( (Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.85) -20)))*(Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.85) -20)))/pdef);
         
         document.getElementById("playerHealth").innerHTML = Math.ceil(playerHp - opponentDamage);
         document.getElementById("opponentHealth").innerHTML = Math.ceil(opponentHp-damage/2);
