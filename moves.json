@@ -4,7 +4,7 @@
     "moveset": {
       "Giga Drain": {"type": "Grass", "category": "Special", "power": 75, "accuracy": 100},
       "Sludge Bomb": {"type": "Poison", "category": "Special", "power": 90, "accuracy": 100},
-      "Sleep Powder": {"type": "Grass", "category": "Status", "power": 0, "accuracy": 100},
+      "Leaf Blade": {"type": "Grass", "category": "Physical", "power": 90, "accuracy": 100},
       "Leech Seed": {"type": "Grass", "category": "Status", "power": 0, "accuracy": 100}
     }
   },
@@ -28,7 +28,7 @@
     "moveset": {
       "Bug Buzz": {"type": "Bug", "category": "Special", "power": 90, "accuracy": 100},
       "Quiver Dance": {"type": "Bug", "category": "Status", "power": 0, "accuracy": 100},
-      "Sleep Powder": {"type": "Grass", "category": "Status", "power": 0, "accuracy": 100},
+      "Leaf Blade": {"type": "Grass", "category": "Physical", "power": 90, "accuracy": 100},
       "Hurricane": {"type": "Flying", "category": "Special", "power": 110, "accuracy": 100}
     }
   },
@@ -42,34 +42,34 @@
   },
   "pidgeot": {
     "moveset": {
-      "Hurricane": {"type": "Flying", "category": "Special", "basepower": 110, "accuracy": 100},
-      "Heat Wave": {"type": "Fire", "category": "Special", "basepower": 95, "accuracy": 100},
-      "Roost": {"type": "Flying", "category": "Status", "basepower": 0, "accuracy": 100},
-      "Defog": {"type": "Flying", "category": "Status", "basepower": 0, "accuracy": 100}
+      "Hurricane": {"type": "Flying", "category": "Special", "power": 110, "accuracy": 100},
+      "Heat Wave": {"type": "Fire", "category": "Special", "power": 95, "accuracy": 100},
+      "Roost": {"type": "Flying", "category": "Status", "power": 0, "accuracy": 100},
+      "Defog": {"type": "Flying", "category": "Status", "power": 0, "accuracy": 100}
     }
   },
     "raticate": {
       "moveset": {
         "Facade": {"type": "Normal", "Category": "Physical", "power": 70, "Accuracy": 100},
-        "Sucker Punch": {"type": "Dark", "Category": "Physical", "power": 70, "Accuracy": 100},
-        "Crunch": {"type": "Dark", "Category": "Physical", "power": 80, "Accuracy": 100},
+        "Sucker Punch": {"type": "Normal", "Category": "Physical", "power": 70, "Accuracy": 100},
+        "Crunch": {"type": "Normal", "Category": "Physical", "power": 80, "Accuracy": 100},
         "Body Slam": {"type": "Normal", "category": "Physical", "power": 85, "accuracy": 100}
       }
   },
   "fearow": {
     "moveset": {
-      "Drill Peck": {"type": "Flying", "category": "Physical", "basepower": 80, "accuracy": 100},
-      "Drill Run": {"type": "Ground", "category": "Physical", "basepower": 80, "accuracy": 100},
+      "Drill Peck": {"type": "Flying", "category": "Physical", "power": 80, "accuracy": 100},
+      "Drill Run": {"type": "Ground", "category": "Physical", "power": 80, "accuracy": 100},
       "Body Slam": {"type": "Normal", "category": "Physical", "power": 85, "accuracy": 100},
-      "Roost": {"type": "Flying", "category": "Status", "basepower": 0, "accuracy": 100}
+      "Roost": {"type": "Flying", "category": "Status", "power": 0, "accuracy": 100}
     }
   },
   "arbok": {
     "moveset": {
-      "Gunk Shot": {"type": "Poison", "category": "Physical", "basepower": 120, "accuracy": 100},
-      "Earthquake": {"type": "Ground", "category": "Physical", "basepower": 100, "accuracy": 100},
-      "Sucker Punch": {"type": "Dark", "category": "Physical", "basepower": 70, "accuracy": 100},
-      "Coil": {"type": "Poison", "category": "Status", "basepower": 0, "accuracy": 100}
+      "Gunk Shot": {"type": "Poison", "category": "Physical", "power": 120, "accuracy": 100},
+      "Earthquake": {"type": "Ground", "category": "Physical", "power": 100, "accuracy": 100},
+      "Sucker Punch": {"type": "Normal", "category": "Physical", "power": 70, "accuracy": 100},
+      "Coil": {"type": "Poison", "category": "Status", "power": 0, "accuracy": 100}
     }
   },
   "raichu": {
@@ -77,7 +77,7 @@
       "Thunderbolt": {"type": "Electric", "category": "Special", "power": 90, "accuracy": 100},
       "Grass Knot": {"type": "Grass", "category": "Special", "power": 0, "accuracy": 100},
       "Focus Blast": {"type": "Fighting", "category": "Special", "power": 120, "accuracy": 100},
-      "Nasty Plot": {"type": "Dark", "category": "Status", "power": 0, "accuracy": 100}
+      "Nasty Plot": {"type": "Normal", "category": "Status", "power": 0, "accuracy": 100}
     }
   },
   "sandslash": {
@@ -115,7 +115,7 @@
   "ninetales": {
     "moveset": {
       "Fire Blast": {"type": "Fire", "category": "Special", "power": 110, "accuracy": 100},
-      "Nasty Plot": {"type": "Dark", "category": "Status", "power": 0, "accuracy": 100},
+      "Nasty Plot": {"type": "Normal", "category": "Status", "power": 0, "accuracy": 100},
       "Psyshock": {"type": "Psychic", "category": "Special", "power": 80, "accuracy": 100},
       "Solar Beam": {"type": "Grass", "category": "Special", "power": 120, "accuracy": 100}
     }
@@ -132,7 +132,7 @@
     "moveset": {
       "Solar Beam": {"type": "Grass", "category": "Special", "power": 120, "accuracy": 100},
       "Sludge Bomb": {"type": "Poison", "category": "Special", "power": 90, "accuracy": 100},
-      "Sleep Powder": {"type": "Grass", "category": "Status", "power": 0, "accuracy": 100},
+      "Leaf Blade": {"type": "Grass", "category": "Physical", "power": 90, "accuracy": 100},
       "Synthesis": {"type": "Grass", "category": "Status", "power": 0, "accuracy": 100}
     }
   },
@@ -147,7 +147,7 @@
   "venomoth": {
     "moveset": {
       "Bug Buzz": {"type": "Bug", "category": "Special", "power": 90, "accuracy": 100},
-      "Sleep Powder": {"type": "Grass", "category": "Status", "power": 0, "accuracy": 100},
+      "Leaf Blade": {"type": "Grass", "category": "Physical", "power": 90, "accuracy": 100},
       "Quiver Dance": {"type": "Bug", "category": "Status", "power": 0, "accuracy": 100},
       "Psychic": {"type": "Psychic", "category": "Special", "power": 90, "accuracy": 100}
     }
@@ -156,7 +156,7 @@
     "moveset": {
       "Earthquake": {"type": "Ground", "category": "Physical", "power": 100, "accuracy": 100},
       "Rock Slide": {"type": "Rock", "category": "Physical", "power": 75, "accuracy": 100},
-      "Sucker Punch": {"type": "Dark", "category": "Physical", "power": 80, "accuracy": 100},
+      "Sucker Punch": {"type": "Normal", "category": "Physical", "power": 80, "accuracy": 100},
       "Reversal": {"type": "Fighting", "category": "Physical", "power": 0, "accuracy": 100}
     }
   },
@@ -165,7 +165,7 @@
       "Fake Out": {"type": "Normal", "category": "Physical", "power": 40, "accuracy": 100},
       "Return": {"type": "Normal", "category": "Physical", "power": 0, "accuracy": 100},
       "Hyper Beam": {"type": "Normal", "category": "Special", "power": 150, "accuracy": 100},
-      "Foul Play": {"type": "Dark", "category": "Physical", "power": 95, "accuracy": 100}
+      "Foul Play": {"type": "Normal", "category": "Physical", "power": 95, "accuracy": 100}
     }
   },
   "golduck": {
@@ -204,16 +204,16 @@
     "moveset": {
       "Dynamic Punch": {"type": "Fighting", "category": "Physical", "power": 100, "accuracy": 100},
       "Stone Edge": {"type": "Rock", "category": "Physical", "power": 100, "accuracy": 100},
-      "Knock Off": {"type": "Dark", "category": "Physical", "power": 65, "accuracy": 100},
-      "Bullet Punch": {"type": "Steel", "category": "Physical", "power": 40, "accuracy": 100}
+      "Knock Off": {"type": "Normal", "category": "Physical", "power": 65, "accuracy": 100},
+      "Bullet Punch": {"type": "Normal", "category": "Physical", "power": 40, "accuracy": 100}
     }
   },
   "victreebel": {
     "moveset": {
       "Solar Beam": {"type": "Grass", "category": "Special", "power": 120, "accuracy": 100},
       "Sludge Bomb": {"type": "Poison", "category": "Special", "power": 90, "accuracy": 100},
-      "Sleep Powder": {"type": "Grass", "category": "Status", "power": 0, "accuracy": 100},
-      "Sucker Punch": {"type": "Dark", "category": "Physical", "power": 80, "accuracy": 100}
+      "Leaf Blade": {"type": "Grass", "category": "Physical", "power": 90, "accuracy": 100},
+      "Sucker Punch": {"type": "Normal", "category": "Physical", "power": 80, "accuracy": 100}
     }
   },
   "tentacruel": {
@@ -251,7 +251,7 @@
   "magneton": {
     "moveset": {
       "Thunderbolt": {"type": "Electric", "category": "Special", "power": 90, "accuracy": 100},
-      "Flash Cannon": {"type": "Steel", "category": "Special", "power": 80, "accuracy": 100},
+      "Flash Cannon": {"type": "Normal", "category": "Special", "power": 80, "accuracy": 100},
       "Thunder Wave": {"type": "Electric", "category": "Status", "power": 0, "accuracy": 100},
       "Magnet Rise": {"type": "Electric", "category": "Status", "power": 0, "accuracy": 100}
     }
@@ -340,7 +340,7 @@
     "moveset": {
       "Psychic": {"type": "Psychic", "category": "Special", "power": 90, "accuracy": 100},
       "Giga Drain": {"type": "Grass", "category": "Special", "power": 75, "accuracy": 100},
-      "Sleep Powder": {"type": "Grass", "category": "Status", "power": 0, "accuracy": 100},
+      "Leaf Blade": {"type": "Grass", "category": "Physical", "power": 90, "accuracy": 100},
       "Leech Seed": {"type": "Grass", "category": "Status", "power": 0, "accuracy": 100}
     }
   },
@@ -396,7 +396,7 @@
     "moveset": {
       "Giga Drain": {"type": "Grass", "category": "Special", "power": 75, "accuracy": 100},
       "Ancient power": {"type": "Rock", "category": "Special", "power": 60, "accuracy": 100},
-      "Sleep Powder": {"type": "Grass", "category": "Status", "power": 0, "accuracy": 100},
+      "Leaf Blade": {"type": "Grass", "category": "Physical", "power": 90, "accuracy": 100},
       "Stun Spore": {"type": "Grass", "category": "Status", "power": 0, "accuracy": 100}
     }
   },
@@ -404,8 +404,8 @@
     "moveset": {
       "Earthquake": {"type": "Ground", "category": "Physical", "power": 100, "accuracy": 100},
       "Double-Edge": {"type": "Normal", "category": "Physical", "power": 120, "accuracy": 100},
-      "Crunch": {"type": "Dark", "category": "Physical", "power": 80, "accuracy": 100},
-      "Sucker Punch": {"type": "Dark", "category": "Physical", "power": 70, "accuracy": 100}
+      "Crunch": {"type": "Normal", "category": "Physical", "power": 80, "accuracy": 100},
+      "Sucker Punch": {"type": "Normal", "category": "Physical", "power": 70, "accuracy": 100}
     }
   },
   "seadra": {
@@ -453,7 +453,7 @@
       "Ice Beam": {"type": "Ice", "category": "Special", "power": 90, "accuracy": 100},
       "Psychic": {"type": "Psychic", "category": "Special", "power": 90, "accuracy": 100},
       "Lovely Kiss": {"type": "Normal", "category": "Status", "power": 0, "accuracy": 100},
-      "Nasty Plot": {"type": "Dark", "category": "Status", "power": 0, "accuracy": 100}
+      "Nasty Plot": {"type": "Normal", "category": "Status", "power": 0, "accuracy": 100}
     }
   },
   "electabuzz": {
@@ -524,7 +524,7 @@
     "moveset": {
       "Fire Blast": {"type": "Fire", "category": "Special", "power": 110, "accuracy": 100},
       "Quick Attack": {"type": "Normal", "category": "Physical", "power": 40, "accuracy": 100},
-      "Bite": {"type": "Dark", "category": "Physical", "power": 60, "accuracy": 100},
+      "Bite": {"type": "Normal", "category": "Physical", "power": 60, "accuracy": 100},
       "Flare Blitz": {"type": "fire", "category": "Physical", "power": 120, "accuracy": 100}
     }
   },
