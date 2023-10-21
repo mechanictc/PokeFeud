@@ -59,22 +59,22 @@
 			<b id="opponentHealth">Health: <%=pokemon[team2].hp %></b>
 		</div>
         <center>
-        <div style = "position: absolute; z-index: 0; top: 50%; left: 50%">
+        <div class="animationContainer" style = "position: relative; z-index: 0; top: 50%; left: 50%">
         </center>
         <center>
         <img src = "/images/backgrounds/bg-beach.jpg" style = "width: 50%; height: 50%; z-index:-2">
         <img src = "/images/back/<%= team1 %>.png" id = "bsprite" style = "position: absolute; top: 42%; left: 25%; width: 20%; aspect-ratio: 1/1;">
-        <img src = "/images/front/<%= team2 %>.png" style = "position: absolute; top: 10%; left: 55%; width: 20%; aspect-ratio: 1/1;">
+        <img src = "/images/front/<%= team2 %>.png" id = "osprite" style = "position: absolute; top: 10%; left: 55%; width: 20%; aspect-ratio: 1/1;">
         </div>
         </center>
         <center>
         <div class = "inter">
             <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="  playsound(); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>, 1); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
-            <button class="move" id="move2" onclick="  playsound(); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>, 2); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
-            <button class="move" id="move3" onclick=" playsound(); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>, 3); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
-            <button class="move" id="move4" onclick="  playsound(); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>, 4); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
+            <button class="move" id="move1" onclick=" playsound(); myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>, 1);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
+            <button class="move" id="move2" onclick=" playsound(); myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>, 2);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
+            <button class="move" id="move3" onclick=" playsound(); myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>, 3);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
+            <button class="move" id="move4" onclick=" playsound(); myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>, 4);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
         </div>
         </div>
         </center>
@@ -93,7 +93,7 @@
     
       <!-- Modal content -->
       <div class="modal-content">
-        <button class="close" id = "close">CLOSE</button>
+        <button style="display: none" class="close" id = "close">CLOSE</button>
         <p id = "mod" style = "color: blue"></p>
       </div>
     
@@ -102,7 +102,7 @@
     
         <!-- Modal content -->
         <div class="modal-content">
-          <button class="closeopp" id = closeopp>CLOSE</button>
+          <button style="display: none" class="closeopp" id = closeopp>CLOSE</button>
           <p id = "modopp" style = "color: red"></p>
         </div>
       
@@ -115,8 +115,6 @@
     let modal = document.getElementById("myModal");
     let thingopp = document.getElementById("closeopp");
     let modalopp = document.getElementById("myModalopp");
-    console.log(thing)
-    console.log(modal)
     let playerHp = (<%=pokemon[team1].hp%> * 5)  ;
     let opponentHp = (<%=pokemon[team2].hp%> * 5);
     document.getElementById("playerHealth").innerHTML = playerHp;
@@ -127,18 +125,19 @@
        // console.log("player damage is:"+playerDamage);
        let pdef = ((<%=pokemon[team1].defense%>)+(<%=pokemon[team1].special_defense%>))/2;
        let odef = ((<%=pokemon[team2].defense%>)+(<%=pokemon[team2].special_defense%>))/2;
-    function update(damage){
-    let opponentDamage =Math.floor( (Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.85) -20)))*(Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.85) -20)))/pdef);
-        
-        document.getElementById("playerHealth").innerHTML = Math.ceil( document.getElementById("playerHealth").innerHTML- opponentDamage);
+    function updateOpponent(damage){
         document.getElementById("opponentHealth").innerHTML = Math.ceil(document.getElementById("opponentHealth").innerHTML-damage/2);
         document.getElementById("hp1").style.width = document.getElementById("opponentHealth").innerHTML/opponentHp *250 + "px";
-        displayopp(opponentDamage);
-        if(document.getElementById("playerHealth").innerHTML <= 0){
-            window.location = '../lose'
-        }
         if(document.getElementById("opponentHealth").innerHTML <= 0){
             window.location = '../win'
+        }
+    }
+    function updatePlayer(damage){
+        document.getElementById("playerHealth").innerHTML = Math.ceil( document.getElementById("playerHealth").innerHTML-damage);
+        document.getElementById("hp2").style.width = document.getElementById("playerHealth").innerHTML/playerHp *250 + "px";
+        displayopp(damage);
+        if(document.getElementById("playerHealth").innerHTML <= 0){
+            window.location = '../lose'
         }
     }
     async function playsound(){
@@ -147,21 +146,109 @@
     }
     function displayplayer(dam, num){
         console.log(modal)
-        mod.innerHTML = "You used " + document.getElementById("move" + num).innerHTML + "!\n it did " + Math.ceil(dam/2) + " damage!"
+        mod.innerHTML = "You used " + document.getElementById("move" + num).innerHTML + "!\n It did " + Math.ceil(dam/2) + " damage!"
         modal.style.display = "block"
     }
     function displayopp(dam){
         console.log(modal)
-        modopp.innerHTML = "oppoent attacked you for " + dam + " damage!"
+        modopp.innerHTML = "Opponent attacked you for " + dam + " damage!"
         modalopp.style.display = "block"
     }
     thing.onclick = function(){
-        playsound()
-        document.getElementById("hp2").style.width = document.getElementById("playerHealth").innerHTML/playerHp *250 + "px";
-        modal.style.display = "none"
+        playsound();
+        modal.style.display = "none";
+        thing.style.display = "none";
+        enemyMove();
     }    
     thingopp.onclick = function(){
         modalopp.style.display = "none"
+        thingopp.style.display = "none";
+    }
+    function myMove(damage) {
+        let id = null;
+        let id2 = null;
+        let closeButton = document.getElementById("close");
+        let closeButton2 = document.getElementById("closeopp");
+        let elem = document.getElementById("bsprite");
+        let elem2 = document.getElementById("osprite");
+        let posX = elem.offsetLeft;
+        let posY = elem.offsetTop;
+        let posX2 = elem2.offsetLeft;
+        let posY2 = elem2.offsetTop;
+        let incrementalX = (posX2-posX)/100;
+        let incrementalY = (posY-posY2)/100;
+        elem2.style.left = posX2 + 'px';
+        elem2.style.top = posY2 + 'px';
+        clearInterval(id);
+        clearInterval(id2);
+        id = setInterval(frame, 10);
+        function frame() {
+            if (parseInt(elem.style.left.substring(0,3))>=800) {
+                clearInterval(id);
+                id2 = setInterval(frameBack, 10);
+                updateOpponent(damage)
+            } else {
+                posX+=incrementalX;
+                posY-=incrementalY;
+                elem.style.left = posX + 'px';
+                elem.style.top = posY + 'px';
+            }
+        }
+        function frameBack(){
+            if (parseInt(elem.style.left.substring(0,3))<=334) {
+                clearInterval(id2);
+                closeButton.style.display = "block";
+            } else {
+                posX-=incrementalX;
+                posY+=incrementalY;
+                elem.style.left = posX + 'px';
+                elem.style.top = posY + 'px';
+            }
+        }
+    }
+    function enemyMove(damage){
+        let id = null;
+        let id2 = null;
+        let closeButton = document.getElementById("close");
+        let closeButton2 = document.getElementById("closeopp");
+        let elem = document.getElementById("bsprite");
+        let elem2 = document.getElementById("osprite");
+        let posX = elem.offsetLeft;
+        let posY = elem.offsetTop;
+        let posX2 = elem2.offsetLeft;
+        let posY2 = elem2.offsetTop;
+        let incrementalX = (posX2-posX)/100;
+        let incrementalY = (posY-posY2)/100;
+        let opponentDamage =Math.floor( (Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.85) -20)))*(Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.85) -20)))/pdef);
+        elem2.style.left = posX2 + 'px';
+        elem2.style.top = posY2 + 'px';
+        clearInterval(id);
+        clearInterval(id2);
+        displayopp(opponentDamage);
+        id = setInterval(frame2, 10);
+        function frame2() {
+            if (parseInt(elem2.style.left.substring(0,3))<=304) {
+                clearInterval(id);
+                id2 = setInterval(frameBack2, 10);
+                updatePlayer(opponentDamage);
+            } else {
+                posX2-=incrementalX;
+                posY2+=incrementalY;
+                elem2.style.left = posX2 + 'px';
+                elem2.style.top = posY2 + 'px';
+            }
+        }
+        function frameBack2(){
+            if (parseInt(elem2.style.left.substring(0,3))>=800) {
+                clearInterval(id2);
+                closeButton2.style.display = "block";
+            } else {
+                posX2+=incrementalX;
+                posY2-=incrementalY;
+                elem2.style.left = posX2 + 'px';
+                elem2.style.top = posY2 + 'px';
+            }
+        }  
     }
         </script>
 
