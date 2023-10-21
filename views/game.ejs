@@ -49,12 +49,7 @@
             <button class="move" id="move3" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
             <button class="move" id="move4" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
         </div>
-            <!-- <button type = "button" class="switch" id = "swit1" onclick="switched(1, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[1].charAt(0).toUpperCase() + team1[1].slice(1)%></button>
-            <button type = "button" class="switch" id = "swit2" onclick="switched(2, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[2].charAt(0).toUpperCase() + team1[2].slice(1)%></button>
-            <button type = "button" class="switch" id = "swit3" onclick="switched(3, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[3].charAt(0).toUpperCase() + team1[3].slice(1)%></button>
-            <button type = "button" class="switch" id = "swit4" onclick="switched(4, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[4].charAt(0).toUpperCase() + team1[4].slice(1)%></button>
-            <button type = "button" class="switch" id = "swit5" onclick="switched(5, '<%=team1%>')" style = " width:8%; aspect-ratio: 2/1;"><%=team1[5].charAt(0).toUpperCase() + team1[5].slice(1)%></button>
-        </div>--></center>
+        </center>
 		<div style = "bottom: 50%;">
 			<h1 id="player"><%=team1%></h1>
 			<b id="playerHealth">Health: <%=pokemon[team1].hp * 3%></b>
