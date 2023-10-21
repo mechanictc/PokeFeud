@@ -13,14 +13,21 @@
        let pdef = ((<%=pokemon[team1].defense%>)+(<%=pokemon[team1].special_defense%>))/2;
        let odef = ((<%=pokemon[team2].defense%>)+(<%=pokemon[team2].special_defense%>))/2;
 
-           console.log("opponent damage is:"+opponentDamage);
 	    function update(damage){
-		    let opponentDamage = Math.floor(Math.random() * 150);
-			
-			document.getElementById("playerHealth").innerHTML = Math.ceil(playerHp - opponentDamage);
-			document.getElementById("opponentHealth").innerHTML = Math.ceil(opponentHp-(damage/2));
-			opponentHp -= Math.ceil(damage/2);
+            console.log("damage is:"+damage);
 
+		   // let opponentDamage = Math.floor(Math.random() * 150);
+            opponentDamage = Math.sqrt((<%=pokemon[team2].attack%>)*(<%=pokemon[team2].special_attack%>))*1.1;
+            opponentDamage = Math.ceil(Math.random(0.75,1.25)*opponentDamage);
+            console.log("opponent damage is:"+opponentDamage);
+			document.getElementById("playerHealth").innerHTML = Math.ceil(playerHp - opponentDamage);
+			document.getElementById("opponentHealth").innerHTML = Math.ceil(opponentHp-damage);
+			opponentHp -= Math.ceil(damage);
+
+
+            if(document.getElementById("opponentHealth").innerHTML >= 0){
+                window.location = '../win'
+            }
             if(document.getElementById("playerHealth").innerHTML <= 0){
                 window.location = '../lose'
             }
