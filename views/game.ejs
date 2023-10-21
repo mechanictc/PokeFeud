@@ -37,25 +37,21 @@
 			playerHp -= opponentDamage;
 
 		}
-        function playsound(){
-            var audio = new Audio('/music/move.mp3');
-            audio.play();
-        }
 			</script>
     <body>
         <embed src="/music/music.mp3" loop="true" autostart="true" width="0" height="0">
-        <center><h1 style="margin-top: 0;"><%= title %></h1></center>
-		<div style = "  position: relative; left: 65%; color: red">
+        <center><h1><%= title %></h1></center>
+        <center>
+		<div>
 			<h1 id="opponent"><%=team2%></h1>
 			<b id="opponentHealth">Health: <%=pokemon[team2].hp * 3%></b>
 		</div>
-        <center>
         <div style = "position: absolute; z-index: 0; top: 50%; left: 50%">
         </center>
         <center>
         <img src = "/images/backgrounds/bg-beach.jpg" style = "width: 50%; height: 50%; z-index:-2">
-        <img src = "/images/back/<%= team1 %>.png" id = "bsprite" style = "position: absolute; top: 50%; left: 25%; width: 20%; aspect-ratio: 1/1;">
-        <img src = "/images/front/<%= team2 %>.png" style = "position: absolute; top: 17%; left: 55%; width: 20%; aspect-ratio: 1/1;">
+        <img src = "/images/back/<%= team1 %>.png" id = "bsprite" style = "position: absolute; top: 42%; left: 25%; width: 20%; aspect-ratio: 1/1;">
+        <img src = "/images/front/<%= team2 %>.png" style = "position: absolute; top: 10%; left: 50%; width: 20%; aspect-ratio: 1/1;">
         </div>
         </center>
         <center>
@@ -67,8 +63,8 @@
             <button class="move" id="move3" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>); playsound()" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
             <button class="move" id="move4" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>); playsound()" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
         </div>
-</center>
-		<div style = "position: absolute; bottom: 25%; left: 15%; color: blue;">
+        </center>
+		<div style = "bottom: 50%;">
 			<h1 id="player"><%=team1%></h1>
 			<b id="playerHealth">Health: <%=pokemon[team1].hp * 3%></b>
 		</div>
