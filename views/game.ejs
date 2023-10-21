@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<<<<<<< HEAD
     <style>/* The Modal (background) */
         .modal {
           display: none; /* Hidden by default */
@@ -50,6 +51,35 @@
   cursor: pointer;
 }
 </style>
+=======
+	<script>
+		let player = '<%=team1%>';
+		let opponent = '<%=team2%>';
+		let playerHp = (<%=pokemon[team1].hp%> * 2) + 110;
+		let opponentHp = (<%=pokemon[team2].hp%> * 2) + 110;
+
+	    function update(damage){
+            document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
+			opponentHp -= damage/2;
+            window.alert("You did " + damage/2 + " damage!");
+            if(document.getElementById("opponentHealth").innerHTML <= 0){
+                window.location = '../win'
+            }
+		    let opponentDamage = Math.floor(Math.random() * 150);
+            window.alert("Opponent did " + opponentDamage + " damage!");
+			document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage;
+            if(document.getElementById("playerHealth").innerHTML <= 0){
+                window.location = '../lose'
+            }
+			playerHp -= opponentDamage;
+
+		}
+        function playsound(){
+            var audio = new Audio('/music/move.mp3');
+            audio.play();
+        }
+			</script>
+>>>>>>> parent of 431891d (modal?)
     <body>
         <embed src="/music/music.mp3" loop="true" autostart="true" width="0" height="0">
         <center><h1 style="margin-top: 0;"><%= title %></h1></center>
@@ -70,11 +100,18 @@
         <div class = "inter">
             <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
+<<<<<<< HEAD
             <button class="move" id="move1" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>, 1); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
             <button class="move" id="move2" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>, 2); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
             <button class="move" id="move3" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>, 3); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
             <button class="move" id="move4" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>,4 ); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
         </div>
+=======
+            <button class="move" id="move1" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
+            <button class="move" id="move2" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
+            <button class="move" id="move3" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
+            <button class="move" id="move4" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
+>>>>>>> parent of 431891d (modal?)
         </div>
 </center>
 		<div style = "position: absolute; bottom: 25%; left: 15%; color: blue;">
