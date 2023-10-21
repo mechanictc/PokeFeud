@@ -4,26 +4,18 @@
 	<script>
 		let player = '<%=team1%>';
 		let opponent = '<%=team2%>';
-		let playerHp = (<%=pokemon[team1].hp%> * 2) * 2;
-		let opponentHp = (<%=pokemon[team2].hp%> * 2) * 2;
+		let playerHp = (<%=pokemon[team1].hp%> * 2) + 110;
+		let opponentHp = (<%=pokemon[team2].hp%> * 2) + 110;
         //new
-        let playerDamage = ((<%=pokemon[team1].attack%>)+(<%=pokemon[team1].special_attack%>))/2;
-        let opponentDamage = Math.sqrt((<%=pokemon[team2].attack%>)*(<%=pokemon[team2].special_attack%>))*1.1;
-       // console.log("player damage is:"+playerDamage);
-       let pdef = ((<%=pokemon[team1].defense%>)+(<%=pokemon[team1].special_defense%>))/2;
-       let odef = ((<%=pokemon[team2].defense%>)+(<%=pokemon[team2].special_defense%>))/2;
-
-           console.log("opponent damage is:"+opponentDamage);
+        let playerDamage = (<%=pokemon[team1].damage%>);
+        let opponentDamage = (<%=pokemon[team2].damage%>);
 	    function update(damage){
 		   // let opponentDamage = Math.floor(Math.random() * 150);
-
-
-			document.getElementById("playerHealth").innerHTML = playerHp - Math.ceil(((opponentDamage^2)/pdef*2)*(Math.ceil(Math.random(7.5,12.5))));
-            console.log(Math.ceil(((opponentDamage^2)/pdef*2)*(Math.random(7.5,12.5))));
+           
+			document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage*(math.random(0.75,1.25));
+            console.log(opponentDamage*(math.random(0.75,1.25)));
 			document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
-            let mult = playerDamage/odef;
-            console.log("mult is:"+mult)
-			opponentHp -= damage/2*mult;
+			opponentHp -= damage/2;
 
             if(document.getElementById("playerHealth").innerHTML <= 0){
                 window.location = '../lose'
