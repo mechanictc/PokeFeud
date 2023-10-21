@@ -159,14 +159,6 @@
         "special_defense": 70,
         "speed": 120
     },
-    "persian": {
-        "hp": 65,
-        "attack": 70,
-        "defense": 60,
-        "special_attack": 65,
-        "special_defense": 65,
-        "speed": 115
-    },
     "golduck": {
         "hp": 80,
         "attack": 82,
@@ -510,14 +502,6 @@
         "special_attack": 110,
         "special_defense": 95,
         "speed": 65
-    },
-    "jolteon": {
-        "hp": 65,
-        "attack": 65,
-        "defense": 60,
-        "special_attack": 110,
-        "special-defense": 95,
-        "speed": 130
     },
     "flareon": {
         "hp": 65,
