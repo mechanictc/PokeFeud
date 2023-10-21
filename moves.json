@@ -188,7 +188,7 @@
     "moveset": {
       "Psychic": {"type": "Psychic", "category": "Special", "power": 90, "accuracy": 100},
       "Focus Blast": {"type": "Fighting", "category": "Special", "power": 120, "accuracy": 100},
-      "Shadow Ball": {"type": "Ghost", "category": "Special", "power": 80, "accuracy": 100},
+      "Zen Headbutt": {"type": "Psychic", "category": "Physical", "power": 80, "accuracy": 100},
       "Body Slam": {"type": "Fighting", "category": "Physical", "power": 85, "accuracy": 100}
     }
   },
@@ -290,7 +290,7 @@
   },
   "gengar": {
     "moveset": {
-      "Shadow Ball": {"type": "Ghost", "category": "Special", "power": 80, "accuracy": 100},
+      "Zen Headbutt": {"type": "Psychic", "category": "Physical", "power": 80, "accuracy": 100},
       "Sludge Bomb": {"type": "Poison", "category": "Special", "power": 90, "accuracy": 100},
       "Thunderbolt": {"type": "Electric", "category": "Special", "power": 90, "accuracy": 100},
       "Body Slam": {"type": "Fighting", "category": "Physical", "power": 85, "accuracy": 100}
