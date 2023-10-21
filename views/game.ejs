@@ -56,7 +56,7 @@
         <center><h1><%= title %></h1></center>
 		<div style="position: absolute; left: 75%; color: red">
 			<h1 id="opponent"><%=team2%></h1>
-			<b id="opponentHealth">Health: <%=pokemon[team2].hp * 3%></b>
+			<b id="opponentHealth">Health: <%=pokemon[team2].hp %></b>
 		</div>
         <center>
         <div style = "position: absolute; z-index: 0; top: 50%; left: 50%">
@@ -71,21 +71,21 @@
         <div class = "inter">
             <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
-            <button class="move" id="move1" onclick=" playsound(); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>, 1); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
-            <button class="move" id="move2" onclick=" playsound(); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>, 2); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
+            <button class="move" id="move1" onclick="  playsound(); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>, 1); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
+            <button class="move" id="move2" onclick="  playsound(); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>, 2); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
             <button class="move" id="move3" onclick=" playsound(); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>, 3); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
-            <button class="move" id="move4" onclick=" playsound(); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>, 4); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
+            <button class="move" id="move4" onclick="  playsound(); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>, 4); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
         </div>
         </div>
         </center>
 		<div style = "position: absolute; bottom: 32%; left: 13%; color: blue;">
 			<h1 id="player"><%=team1%></h1>
-			<b id="playerHealth">Health: <%=pokemon[team1].hp * 3%></b>
+			<b id="playerHealth">Health: <%=pokemon[team1].hp%></b>
 		</div>
-        <div id = "hpbg1"></div>
-        <div id = "hp1"></div>
-        <div id = "hpbg2"></div>
-        <div id = "hp2"></div>
+        <div id = "hpbg1" style = "height: 26px; width: 263px; position: absolute; left: 81.5%; top: 24.5%; background-color: gray; color: green; border-color: black;"></div>
+        <div id = "hp1" style = "height: 20px; width: 250px; position: absolute; left: 82%; top: 25%; background-color: green; color: green; border-color: black;"></div>
+        <div id = "hpbg2" style = "height: 26px; width: 263px; position: absolute; left: 0.5%; top: 71.5%; background-color: gray; color: green; border-color: black;"></div>
+        <div id = "hp2" style = "height: 20px; width: 250px; position: absolute; left: 1%; top: 72%; background-color: green; color: green; border-color: black;" ></div>
     </body>
 
     <!-- The Modal -->
@@ -117,31 +117,31 @@
     let modalopp = document.getElementById("myModalopp");
     console.log(thing)
     console.log(modal)
-    let playerHp = (<%=pokemon[team1].hp%> * 2) * 2;
-    let opponentHp = (<%=pokemon[team2].hp%> * 2) * 2;
+    let playerHp = (<%=pokemon[team1].hp%> * 5)  ;
+    let opponentHp = (<%=pokemon[team2].hp%> * 5);
+    document.getElementById("playerHealth").innerHTML = playerHp;
+    document.getElementById("opponentHealth").innerHTML = opponentHp;
     function update(damage){
     let opponentDamage = Math.ceil(((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.85) -20)
         
-        document.getElementById("playerHealth").innerHTML = Math.ceil(playerHp - opponentDamage);
-        document.getElementById("opponentHealth").innerHTML = Math.ceil(opponentHp-damage/2);
-        opponentHp -= Math.ceil(damage/2);
-        playerHp -= Math.ceil(opponentDamage);
+        document.getElementById("playerHealth").innerHTML = Math.ceil( document.getElementById("playerHealth").innerHTML- opponentDamage);
+        document.getElementById("opponentHealth").innerHTML = Math.ceil(document.getElementById("opponentHealth").innerHTML-damage/2);
+        document.getElementById("hp1").style.width = document.getElementById("opponentHealth").innerHTML/opponentHp *250 + "px";
+        displayopp(opponentDamage);
         if(document.getElementById("playerHealth").innerHTML <= 0){
             window.location = '../lose'
         }
         if(document.getElementById("opponentHealth").innerHTML <= 0){
             window.location = '../win'
         }
-        displayopp(opponentDamage);
-
     }
-    function playsound(){
+    async function playsound(){
         var audio = new Audio('/music/move.mp3');
         audio.play();
     }
     function displayplayer(dam, num){
         console.log(modal)
-        mod.innerHTML = "You used " + document.getElementById("move" + num).innerHTML + "!\n it did " + dam + " damage!"
+        mod.innerHTML = "You used " + document.getElementById("move" + num).innerHTML + "!\n it did " + Math.ceil(dam/2) + " damage!"
         modal.style.display = "block"
     }
     function displayopp(dam){
@@ -151,6 +151,7 @@
     }
     thing.onclick = function(){
         playsound()
+        document.getElementById("hp2").style.width = document.getElementById("playerHealth").innerHTML/playerHp *250 + "px";
         modal.style.display = "none"
     }    
     thingopp.onclick = function(){
