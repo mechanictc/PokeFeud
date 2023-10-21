@@ -1,40 +1,59 @@
 <!DOCTYPE html>
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-	<script>
-		let player = '<%=team1%>';
-		let opponent = '<%=team2%>';
-		let playerHp = (<%=pokemon[team1].hp%> * 2) + 110;
-		let opponentHp = (<%=pokemon[team2].hp%> * 2) + 110;
-        //new
-        let playerDamage = (<%=pokemon[team1].damage%>);
-        let opponentDamage = (<%=pokemon[team2].damage%>);
-	    function update(damage){
-		   // let opponentDamage = Math.floor(Math.random() * 150);
-           
-			document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage*(math.random(0.75,1.25));
-            console.log(opponentDamage*(math.random(0.75,1.25)));
-			document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
-			opponentHp -= damage/2;
-
-            if(document.getElementById("playerHealth").innerHTML <= 0){
-                window.location = '../lose'
-            }
-            else if(document.getElementById("opponentHealth").innerHTML <= 0){
-                window.location = '../win'
-            }
-			playerHp -= opponentDamage;
-
-		}
-        function playsound(){
-            var audio = new Audio('/music/move.mp3');
-            audio.play();
+    <style>/* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 100; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
         }
-			</script>
+        
+        /* Modal Content/Box */
+        .modal-content {
+          background-color: #fefefe;
+          margin: 15% auto; /* 15% from the top and centered */
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%; /* Could be more or less, depending on screen size */
+        }
+        .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.closeopp {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closeopp:hover,
+.closeopp:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
     <body>
         <embed src="/music/music.mp3" loop="true" autostart="true" width="0" height="0">
-        <center><h1 style="margin-top: 0;"><%= title %></h1></center>
-		<div style = "  position: relative; left: 65%; color: red">
+        <center><h1><%= title %></h1></center>
+		<div style="position: absolute; left: 75%; color: red">
 			<h1 id="opponent"><%=team2%></h1>
 			<b id="opponentHealth">Health: <%=pokemon[team2].hp * 3%></b>
 		</div>
@@ -43,21 +62,22 @@
         </center>
         <center>
         <img src = "/images/backgrounds/bg-beach.jpg" style = "width: 50%; height: 50%; z-index:-2">
-        <img src = "/images/back/<%= team1 %>.png" id = "bsprite" style = "position: absolute; top: 50%; left: 25%; width: 20%; aspect-ratio: 1/1;">
-        <img src = "/images/front/<%= team2 %>.png" style = "position: absolute; top: 17%; left: 55%; width: 20%; aspect-ratio: 1/1;">
+        <img src = "/images/back/<%= team1 %>.png" id = "bsprite" style = "position: absolute; top: 42%; left: 25%; width: 20%; aspect-ratio: 1/1;">
+        <img src = "/images/front/<%= team2 %>.png" style = "position: absolute; top: 10%; left: 55%; width: 20%; aspect-ratio: 1/1;">
         </div>
         </center>
         <center>
         <div class = "inter">
             <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>); playsound()" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
-            <button class="move" id="move2" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>); playsound()" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
-            <button class="move" id="move3" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>); playsound()" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
-            <button class="move" id="move4" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>); playsound()" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
+            <button class="move" id="move1" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>, 1); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
+            <button class="move" id="move2" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>, 2); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
+            <button class="move" id="move3" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>, 3); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
+            <button class="move" id="move4" onclick=" displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>,4 ); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
         </div>
-</center>
-		<div style = "position: absolute; bottom: 25%; left: 15%; color: blue;">
+        </div>
+        </center>
+		<div style = "position: absolute; bottom: 32%; left: 13%; color: blue;">
 			<h1 id="player"><%=team1%></h1>
 			<b id="playerHealth">Health: <%=pokemon[team1].hp * 3%></b>
 		</div>
@@ -66,4 +86,81 @@
         <div id = "hpbg2"></div>
         <div id = "hp2"></div>
     </body>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal" style = "z-index: 1000;">
+    
+      <!-- Modal content -->
+      <div class="modal-content">
+        <button class="close">CLOSE</button>
+        <p id = "mod"></p>
+      </div>
+    
+    </div>
+    <div id="myModalopp" class="modal">
+    
+        <!-- Modal content -->
+        <div class="modal-content">
+          <button class="closeopp">CLOSE</button>
+          <p id = "modopp"></p>
+        </div>
+      
+      </div>
 </html>
+<script>
+    let player = '<%=team1%>';
+    let opponent = '<%=team2%>';
+    let thing = document.getElementsByClassName("close")[0];
+    let modal = document.getElementById("myModal");
+    let thingopp = document.getElementsByClassName("closeopp")[0];
+    let modalopp = document.getElementById("myModalopp");
+
+    let playerHp = (<%=pokemon[team1].hp%> * 2) * 2;
+    let opponentHp = (<%=pokemon[team2].hp%> * 2) * 2;
+    //new
+    let playerDamage = ((<%=pokemon[team1].attack%>)+(<%=pokemon[team1].special_attack%>))/2;
+    let opponentDamage = Math.sqrt((<%=pokemon[team2].attack%>)*(<%=pokemon[team2].special_attack%>))*1.1;
+   // console.log("player damage is:"+playerDamage);
+   let pdef = ((<%=pokemon[team1].defense%>)+(<%=pokemon[team1].special_defense%>))/2;
+   let odef = ((<%=pokemon[team2].defense%>)+(<%=pokemon[team2].special_defense%>))/2;
+
+       console.log("opponent damage is:"+opponentDamage);
+    function update(damage){
+        let opponentDamage = Math.floor(Math.random() * 150);
+        
+        document.getElementById("playerHealth").innerHTML = Math.ceil(playerHp - opponentDamage);
+        document.getElementById("opponentHealth").innerHTML = Math.ceil(opponentHp-(damage/2));
+        opponentHp -= Math.ceil(damage/2);
+
+        if(document.getElementById("playerHealth").innerHTML <= 0){
+            window.location = '../lose'
+        }
+        if(document.getElementById("opponentHealth").innerHTML <= 0){
+            window.location = '../win'
+        }
+        displayopp(opponentDamage);
+        playerHp -= Math.ceil(opponentDamage);
+
+    }
+    function playsound(){
+        var audio = new Audio('/music/move.mp3');
+        audio.play();
+    }
+    function displayplayer(dam, num){
+        console.log(modal)
+        mod.innerHTML = "You used " + document.getElementById("move" + num).innerHTML + "!\n it did" + dam + " damage!"
+        modal.style.display = "block"
+    }
+    function displayopp(dam){
+        console.log(modal)
+        modopp.innerHTML = "oppoent attacked you for" + dam + " damage!"
+        modalopp.style.display = "block"
+    }
+    thing.onclick = function(){
+        modal.style.display = "none"
+    }    
+    thingopp.onclick = function(){
+        modalopp.style.display = "none"
+    }
+        </script>
+
