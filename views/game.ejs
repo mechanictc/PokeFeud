@@ -4,23 +4,27 @@
 	<script>
 		let player = '<%=team1%>';
 		let opponent = '<%=team2%>';
-		let playerHp = (<%=pokemon[team1].hp%> * 2) + 110;
-		let opponentHp = (<%=pokemon[team2].hp%> * 2) + 110;
+		let playerHp = (<%=pokemon[team1].hp%> * 2) * 2;
+		let opponentHp = (<%=pokemon[team2].hp%> * 2) * 2;
+        //new
+        let playerDamage = ((<%=pokemon[team1].attack%>)+(<%=pokemon[team1].special_attack%>))/2;
+        let opponentDamage = Math.sqrt((<%=pokemon[team2].attack%>)*(<%=pokemon[team2].special_attack%>))*1.1;
+       // console.log("player damage is:"+playerDamage);
+       let pdef = ((<%=pokemon[team1].defense%>)+(<%=pokemon[team1].special_defense%>))/2;
+       let odef = ((<%=pokemon[team2].defense%>)+(<%=pokemon[team2].special_defense%>))/2;
 
+           console.log("opponent damage is:"+opponentDamage);
 	    function update(damage){
-            document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
-			opponentHp -= damage/2;
-            window.alert("You did " + damage/2 + " damage!");
-            if(document.getElementById("opponentHealth").innerHTML <= 0){
-                window.location = '../win'
-            }
 		    let opponentDamage = Math.floor(Math.random() * 150);
-            window.alert("Opponent did " + opponentDamage + " damage!");
-			document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage;
+			
+			document.getElementById("playerHealth").innerHTML = ceil(playerHp - opponentDamage);
+			document.getElementById("opponentHealth").innerHTML = ceil(opponentHp-(damage/2));
+			opponentHp -= ceil(damage/2);
+
             if(document.getElementById("playerHealth").innerHTML <= 0){
                 window.location = '../lose'
             }
-			playerHp -= opponentDamage;
+			playerHp -= ceil(opponentDamage);
 
 		}
         function playsound(){
