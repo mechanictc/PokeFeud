@@ -15,21 +15,14 @@
 
            console.log("opponent damage is:"+opponentDamage);
 	    function update(damage){
-		   // let opponentDamage = Math.floor(Math.random() * 150);
-
-
-			document.getElementById("playerHealth").innerHTML = playerHp - Math.ceil(((opponentDamage^2)/pdef*2)*(Math.ceil(Math.random(7.5,12.5))));
-            console.log(Math.ceil(((opponentDamage^2)/pdef*2)*(Math.random(7.5,12.5))));
+		    let opponentDamage = Math.floor(Math.random() * 150);
+			
+			document.getElementById("playerHealth").innerHTML = playerHp - opponentDamage;
 			document.getElementById("opponentHealth").innerHTML = opponentHp-(damage/2);
-            let mult = playerDamage/odef;
-            console.log("mult is:"+mult)
-			opponentHp -= damage/2*mult;
+			opponentHp -= damage/2;
 
             if(document.getElementById("playerHealth").innerHTML <= 0){
                 window.location = '../lose'
-            }
-            else if(document.getElementById("opponentHealth").innerHTML <= 0){
-                window.location = '../win'
             }
 			playerHp -= opponentDamage;
 
@@ -59,10 +52,10 @@
         <div class = "inter">
             <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>); playsound()" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
-            <button class="move" id="move2" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>); playsound()" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
-            <button class="move" id="move3" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>); playsound()" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
-            <button class="move" id="move4" onclick="document.getElementById('action-text').innerHTML = ('<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>'); update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>); playsound()" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
+            <button class="move" id="move1" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
+            <button class="move" id="move2" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
+            <button class="move" id="move3" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
+            <button class="move" id="move4" onclick="update(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
         </div>
 </center>
 		<div style = "position: absolute; bottom: 25%; left: 15%; color: blue;">
