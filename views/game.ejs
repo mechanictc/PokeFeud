@@ -71,10 +71,10 @@
         <div class = "inter">
             <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
-            <button class="move" id="move1" onclick=" playsound(); myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>, 1);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
-            <button class="move" id="move2" onclick=" playsound(); myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>, 2);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
-            <button class="move" id="move3" onclick=" playsound(); myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>, 3);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
-            <button class="move" id="move4" onclick=" playsound(); myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>, 4);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
+            <button class="move" id="move1" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>, 1);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 0) %></button>
+            <button class="move" id="move2" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>, 2);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 1) %></button>
+            <button class="move" id="move3" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>, 3);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 2) %></button>
+            <button class="move" id="move4" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>, 4);" style = " width:10%; aspect-ratio: 5/3;"><%= playModel.getMoves(team1, 3) %></button>
         </div>
         </div>
         </center>
@@ -155,7 +155,6 @@
         modalopp.style.display = "block"
     }
     thing.onclick = function(){
-        playsound();
         modal.style.display = "none";
         thing.style.display = "none";
         enemyMove();
@@ -184,6 +183,7 @@
         id = setInterval(frame, 10);
         function frame() {
             if (parseInt(elem.style.left.substring(0,3))>=800) {
+                playsound()
                 clearInterval(id);
                 id2 = setInterval(frameBack, 10);
                 updateOpponent(damage)
@@ -228,6 +228,7 @@
         id = setInterval(frame2, 10);
         function frame2() {
             if (parseInt(elem2.style.left.substring(0,3))<=304) {
+                playsound()
                 clearInterval(id);
                 id2 = setInterval(frameBack2, 10);
                 updatePlayer(opponentDamage);
