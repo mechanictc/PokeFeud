@@ -126,7 +126,7 @@
        let pdef = ((<%=pokemon[team1].defense%>)+(<%=pokemon[team1].special_defense%>))/2;
        let odef = ((<%=pokemon[team2].defense%>)+(<%=pokemon[team2].special_defense%>))/2;
     function updateOpponent(damage){
-        document.getElementById("opponentHealth").innerHTML = Math.ceil(document.getElementById("opponentHealth").innerHTML.split("/")[0]-damage/1.4)+ " / " + opponentHp;
+        document.getElementById("opponentHealth").innerHTML = Math.ceil(document.getElementById("opponentHealth").innerHTML.split("/")[0]-damage/1.4 +20)+ " / " + opponentHp;
         document.getElementById("hp1").style.width = document.getElementById("opponentHealth").innerHTML.split("/")[0]/opponentHp *250 + "px";
         if(document.getElementById("opponentHealth").innerHTML.split("/")[0] <= 0){
             window.location = '../win'
@@ -146,12 +146,17 @@
     }
     function displayplayer(dam, num){
         console.log(modal)
-        mod.innerHTML = "<%=team1%>" + " used " + document.getElementById("move" + num).innerHTML + "!\n It did " + Math.ceil(dam/1.4) + " damage!"
+        mod.innerHTML = "<%=team1%>" + " used " + document.getElementById("move" + num).innerHTML + "!\n It did " + Math.ceil(dam/1.4 + 20) + " damage!"
         modal.style.display = "block"
     }
-    function displayopp(dam){
-        console.log(modal)
+    function displayopp(dam, crit){
+      if(crit === false){
         modopp.innerHTML ="<%=team2%>" + " attacked <%=team1%> for " + dam + " damage!"
+      }else if(crit === true){
+        modopp.innerHTML ="<%=team2%>" + " CRITICAL HIT <%=team1%> for " + dam + " damage!"
+      }else{
+        modopp.innerHTML ="<%=team2%>" + " attacked <%=team1%> for " + dam + " damage!"
+      }
         modalopp.style.display = "block"
     }
     thing.onclick = function(){
@@ -221,14 +226,22 @@
         let posY2 = elem2.offsetTop;
         let incrementalX = (posX2-posX)/100;
         let incrementalY = (posY-posY2)/100;
-        let opponentDamage =Math.floor( (Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.725) +17)))*(Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.85) -20)))/pdef);
+        let crit = false
+        let opponentDamage = 100000
+        console.log(Math.floor(Math.random() * 100))
+        if(Math.floor(Math.random() * 100) <= 3){
+          crit = true
+           opponentDamage = Math.floor( (Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +2) +50)))*(Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(7) + 20)))*10);
+        }else{
+          opponentDamage =Math.floor( (Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +0.725) +17)))*(Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(+0.725))))/pdef);
+        }
         elem2.style.left = posX2 + 'px';
         elem2.style.top = posY2 + 'px';
         elem.style.zIndex = 100;
         elem2.style.zIndex = 1000;
         clearInterval(id);
         clearInterval(id2);
-        displayopp(opponentDamage);
+        displayopp(opponentDamage, crit);
         id = setInterval(frame2, 10);
         function frame2() {
             if (parseInt(elem2.style.left.substring(0,3))<=334) {
