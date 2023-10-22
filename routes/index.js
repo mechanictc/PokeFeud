@@ -18,7 +18,7 @@ var currPoke = null
 /* GET home page. */
 router.get('/', function(req, res) {
   playModel.calcDamage("charizard", "blastoise", "Flamethrower");
-  res.render('index', { title: 'PokeFever' });
+  res.render('index', { title: 'POKEFEUD' });
 
 });
 
@@ -31,7 +31,7 @@ router.get('/play', function(req, res) {
 	randomFile(directory, (err, file) => {
 		debug.log("selected file: " + file);
     debug.log(aiModel.teamCreate());
-    res.render('game', {title: "pokefever without the fever and no poke so just '  '", bg: file, team1: playerTeam, team2: enemyTeam, playModel: playModel, pokemon:pokemon, aiModel: aiModel});
+    res.render('game', {title: "POKEFEUD", bg: file, team1: playerTeam, team2: enemyTeam, playModel: playModel, pokemon:pokemon, aiModel: aiModel});
 	});
  
 });
