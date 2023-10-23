@@ -21,7 +21,7 @@ const aiModel = require('../models/aiModel.js');
 * @see              https://bulbapedia.bulbagarden.net/wiki/Critical_hit#Core_series
 * @return           the damage pokemon1 will do to pokemon2
 */
-function calcDamage(pokemon1, pokemon2, move) {
+async function calcDamage(pokemon1, pokemon2, move) {
 	try {
 		const ATK_POKEMON_INFO = pokemon[pokemon1];
 		const DEF_POKEMON_INFO = pokemon[pokemon2];
