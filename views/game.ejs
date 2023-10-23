@@ -168,7 +168,8 @@
         modalopp.style.display = "none"
         thingopp.style.display = "none";
     }
-    function myMove(damage,num) {
+    function myMove(num) {
+        let damage = <%= playModel.calcDamage(team1,team2, playmodel.getMoves(team1, num))%>
         let id = null;
         let id2 = null;
         let closeButton = document.getElementById("close");
