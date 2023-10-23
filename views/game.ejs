@@ -71,10 +71,10 @@
         <div class = "inter">
             <h1 id="action-text">What will you do?</h1>
         <div class = "button-container">
-            <button class="move" id="move1" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>, 1);" style = " width:10%; aspect-ratio: 5/3; font-size: 17px"><%= playModel.getMoves(team1, 0) %></button>
-            <button class="move" id="move2" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>, 2);" style = " width:10%; aspect-ratio: 5/3; font-size: 17px"><%= playModel.getMoves(team1, 1) %></button>
-            <button class="move" id="move3" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>, 3);" style = " width:10%; aspect-ratio: 5/3; font-size: 17px"><%= playModel.getMoves(team1, 2) %></button>
-            <button class="move" id="move4" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>); displayplayer(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>, 4);" style = " width:10%; aspect-ratio: 5/3; font-size: 17px;"><%= playModel.getMoves(team1, 3) %></button>
+            <button class="move" id="move1" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 0)) %>, 1); " style = " width:10%; aspect-ratio: 5/3; font-size: 17px"><%= playModel.getMoves(team1, 0) %></button>
+            <button class="move" id="move2" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 1)) %>, 2); " style = " width:10%; aspect-ratio: 5/3; font-size: 17px"><%= playModel.getMoves(team1, 1) %></button>
+            <button class="move" id="move3" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 2)) %>, 3); " style = " width:10%; aspect-ratio: 5/3; font-size: 17px"><%= playModel.getMoves(team1, 2) %></button>
+            <button class="move" id="move4" onclick="myMove(<%= playModel.calcDamage(team1, team2, playModel.getMoves(team1, 3)) %>, 4); " style = " width:10%; aspect-ratio: 5/3; font-size: 17px;"><%= playModel.getMoves(team1, 3) %></button>
         </div>
         </div>
         </center>
@@ -126,7 +126,7 @@
        let pdef = ((<%=pokemon[team1].defense%>)+(<%=pokemon[team1].special_defense%>))/2;
        let odef = ((<%=pokemon[team2].defense%>)+(<%=pokemon[team2].special_defense%>))/2;
     function updateOpponent(damage){
-        document.getElementById("opponentHealth").innerHTML = Math.ceil(document.getElementById("opponentHealth").innerHTML.split("/")[0]-damage/1.4 +20)+ " / " + opponentHp;
+        document.getElementById("opponentHealth").innerHTML = Math.ceil(document.getElementById("opponentHealth").innerHTML.split("/")[0]-damage)+ " / " + opponentHp;
         document.getElementById("hp1").style.width = document.getElementById("opponentHealth").innerHTML.split("/")[0]/opponentHp *250 + "px";
         if(document.getElementById("opponentHealth").innerHTML.split("/")[0] <= 0){
             window.location = '../win'
@@ -146,7 +146,7 @@
     }
     function displayplayer(dam, num){
         console.log(modal)
-        mod.innerHTML = "<%=team1%>" + " used " + document.getElementById("move" + num).innerHTML + "!\n It did " + Math.ceil(dam/1.4 + 20) + " damage!"
+        mod.innerHTML = "<%=team1%>" + " used " + document.getElementById("move" + num).innerHTML + "!\n It did " + dam + " damage!"
         modal.style.display = "block"
     }
     function displayopp(dam, crit){
@@ -168,7 +168,7 @@
         modalopp.style.display = "none"
         thingopp.style.display = "none";
     }
-    function myMove(damage) {
+    function myMove(damage,num) {
         let id = null;
         let id2 = null;
         let closeButton = document.getElementById("close");
@@ -183,10 +183,12 @@
         let incrementalY = (posY-posY2)/100;
         elem2.style.left = posX2 + 'px';
         elem2.style.top = posY2 + 'px';
-        clearInterval(id);
-        clearInterval(id2);
         elem.style.zIndex = 1000;
         elem2.style.zIndex = 100;
+        clearInterval(id);
+        clearInterval(id2);
+        damage = Math.ceil(damage/1.4 + 20)
+        displayplayer(damage, num)
         id = setInterval(frame, 10);
         function frame() {
             if (parseInt(elem.style.left.substring(0,3))>=770) {
