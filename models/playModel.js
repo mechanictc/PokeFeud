@@ -21,7 +21,7 @@ const aiModel = require('../models/aiModel.js');
 * @see              https://bulbapedia.bulbagarden.net/wiki/Critical_hit#Core_series
 * @return           the damage pokemon1 will do to pokemon2
 */
-function calcDamage(pokemon1, pokemon2, move) {
+ function calcDamage(pokemon1, pokemon2, move) {
 	try {
 		const ATK_POKEMON_INFO = pokemon[pokemon1];
 		const DEF_POKEMON_INFO = pokemon[pokemon2];
@@ -31,7 +31,8 @@ function calcDamage(pokemon1, pokemon2, move) {
 		const DEF =  (CATEGORY == true ? DEF_POKEMON_INFO.special_defense : DEF_POKEMON_INFO.defense);
 		debug.log("==========\natk: " + ATK + "\ndef: " + DEF);
 		const LEVEL = 100;
-		const CRITICAL = Math.floor(Math.random() * 255) < ATK_POKEMON_INFO.speed / 2 ? ((2 * LEVEL) + 5) / (LEVEL + 5) : 1;
+		let CRITICAL = 0;
+		CRITICAL = Math.floor(Math.random() * 255) < ATK_POKEMON_INFO.speed / 2 ? ((2 * LEVEL) + 5) / (LEVEL + 5) : 1;
 		debug.log(CRITICAL == 1 ? "no crit" : "CRITICAL HIT");
 		const RANDOM = Math.floor(Math.random() * 39 + 217) / 255;
 		const MOVE_TYPE = MOVE_INFO.type.charAt(0).toLowerCase() + MOVE_INFO.type.slice(1);
@@ -51,7 +52,10 @@ function calcDamage(pokemon1, pokemon2, move) {
 		damage *= RANDOM * EFFECTIVE_1 * EFFECTIVE_2 * STAB_1 * STAB_2;
 		damage = Math.floor(damage);
 		debug.log("damage: " + damage + "\n==========");
-		return damage;
+		let res =damage.toString()+ "&" + CRITICAL.toString();
+		res = JSON.stringify(res)
+		console.log(res)
+		return res;
 	}
     catch (err) {
 		debug.log(err);

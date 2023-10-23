@@ -277,7 +277,7 @@
       "Poison Jab": {"type": "Poison", "category": "Physical", "power": 80, "accuracy": 100},
       "Body Slam": {"type": "Fighting", "category": "Physical", "power": 85, "accuracy": 100},
       "Fire Punch": {"type": "Fire", "Category": "Physical", "power": 75, "Accuracy": 100},
-      "DEEZ NUTZ": {"type": "Ice", "Category": "Physical", "power": 600, "Accuracy": 100}
+      "Ice Punch": {"type": "Ice", "Category": "Physical", "power": 75, "Accuracy": 100}
     }
   },
   "cloyster": {
