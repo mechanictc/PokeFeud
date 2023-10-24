@@ -265,8 +265,7 @@
         let incrementalX = (posX2-posX)/100;
         let incrementalY = (posY-posY2)/100;
         let crit = false
-        let opponentDamage = 100000
-        console.log(Math.floor(Math.random() * 100))
+        let opponentDamage = 1000;
         if(Math.floor(Math.random() * 100) <= 3){
           crit = true
            opponentDamage = Math.floor( (Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(Math.random() +2) +50)))*(Math.ceil((((<%=pokemon[team2].attack%>+<%=pokemon[team2].special_attack%>)/2) *(7) + 20)))*10);
